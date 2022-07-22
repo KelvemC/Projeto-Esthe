@@ -16,3 +16,4 @@
 - Erros Antigos Solucionados :white_check_mark:
 - Perfil de Usuário cliente Criado :white_check_mark:
 - Recuperação de senha foi adicionado :white_check_mark:
+- Usuário Ativo ou não adicionado :white_check_mark:
