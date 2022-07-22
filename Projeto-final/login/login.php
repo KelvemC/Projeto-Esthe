@@ -75,6 +75,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
             <button type="submit" name="SendLogin" value="Logar">Logar</button>
             <p class="message">Não está cadastrado? <a href="../criarConta/cadastroConta.html">Crie uma conta</a></p>
             <p class="message">Seu estabelecimento não está cadastrado? <a href="../cadastro/cadastro.html">Crie uma conta</a></p>
+            <p class="message">Esqueceu a senha? <a href="recuperar_senha.php">Clique aqui para alterar</a></p>
           </form>
         </div>
       </div>
