@@ -1,0 +1,134 @@
+<?php
+session_start();
+ob_start();#serve para limpar o buffer e não causar erro.
+include_once 'conexao.php';
+#se o nome do usuário não estiver no banco de dados, vai apresentar erro
+if((!isset($_SESSION['id'])) and (!isset($_SESSION['nome']))){
+    $_SESSION['msg'] = "Usuário ou senha inválido, necessário realizar o login";
+    header("Location: login.php");
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../login/style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: rgb(240, 226, 226);
+        }
+
+        .titulo01 {
+            margin: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .titulo02 {
+            text-align: center;
+        }
+
+        .content {
+            width: 500px;
+            min-width: 560px;
+            margin: 0px auto;
+            position: relative;
+        }
+
+        .agendamento {
+            grid-area: "agendamento";
+            background-color: white;
+            width: 530px;
+            height: 380px;
+            display: block;
+            padding: 30px;
+            margin: 30px;
+            
+        }
+        .cen{
+            text-align: center;
+        }
+        .butao{
+            text-align: center;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #618862;
+            border-color: rgb(245, 240, 240);
+        }
+        div{
+            margin: 15px;
+        }
+        label{
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="titulo01">
+        Agende Seu Serviço
+    </h1>
+
+    <h1 class="titulo02">
+        Faça Seu Agendamento
+    </h1>
+    <form action="../AgendamentoCliente/agendamentoConcluido.html">
+        <div class="content"> 
+            <div class="agendamento">
+                <p class="cen">Por favor, selecione o serviço:</p>
+                <div class="form-group col-md-8">
+                    <label for="inputEstado">Serviço:</label>
+                    <select id="inputEstado" class="form-control">
+                        <option selected>Pedicuri</option>
+                        <option selected>Cabelereiro</option>
+                        <option selected>Barbearia</option>
+                        <option selected>Massagem</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-8" >
+                    <label for="inputEstado">Funcionário:</label>
+                    <select id="inputEstado" class="form-control">
+                        <option selected>Larissa</option>
+                        <option selected>Carlos</option>
+                        <option selected>Maria Júlia</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-8" >
+                    <label for="inputEstado">Data</label>
+                    <input type="date" name="data" id="data">
+                    <input type="time" name="hora" id="hora">
+                </div>
+                <div class="butao">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Agendar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>
+
+
+
+
+<!--
+    <h1>Bem-vindo <//?php echo $_SESSION['nome'];?></h1>
+    <a href="sair.php">sair</a>
+-->
