@@ -46,6 +46,10 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 $_SESSION['cidade'] = $row_usuario['cidade'];
                 $_SESSION['estado'] = $row_usuario['estado'];
                 
+                //Ativando o usuário após o login usando a sessão id.
+                $query_ativo = $conn->prepare("UPDATE usuario SET ativo ='1' WHERE  id= :id");
+                $query_ativo->bindValue("id", $_SESSION['id']);
+                $query_ativo->execute();
                 header("Location: ../index.php");
             }else{
                 $_SESSION['msg'] = "Usuário ou senha inválido";
