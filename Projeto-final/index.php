@@ -34,6 +34,10 @@ ob_start()#serve para limpar o buffer e não causar erro.
                     
                     <?php
                         if(isset($_SESSION['nome'])){
+                            if(isset($_SESSION['logado'])){
+                                echo $_SESSION['logado'];
+                                unset($_SESSION['logado']);
+                            }
                             echo "<a style='color:midnightblue'>";
                             echo "<a href = './perfilConta/perfil.php'>";
                             echo $_SESSION['nome'];
