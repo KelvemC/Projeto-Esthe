@@ -78,11 +78,11 @@ $mail = new PHPMailer(true);
 
                     $mail->send();
 
-                    $_SESSION['msg'] = "<p style = 'color: black'>Senha atualizada com sucesso!</p>";
+                    $_SESSION['msg'] = '<script>alert("Senha atualizada com sucesso")</script>';
                     header("Location: login.php");
 
                 } catch (Exception $e) {
-                    echo "Erro: Email não enviado com sucesso. Error:{$mail->ErrorInfo}";
+                    echo '<script>alert("Erro: Email não enviado com sucesso. Error:{$mail->ErrorInfo}")</script>';
                 }
 
             }else{
@@ -90,7 +90,7 @@ $mail = new PHPMailer(true);
             }
 
         }else{
-            $_SESSION['msg'] = "<p style = 'color: #ff0000> Erro: Usuário não encontrado!</p>";
+            $_SESSION['msg'] = '<script>alert("Erro: Usuário não encontrado!")</script>';
             header("Location: recuperar_senha.php");
         }
     }

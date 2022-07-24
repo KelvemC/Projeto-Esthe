@@ -21,7 +21,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
     $dados = filter_input_array(INPUT_POST,FILTER_DEFAULT);
     #somente quando eu clicar no botão os dados serão exibidos
     if(!empty($dados['SendLogin'])){
-        var_dump($dados);
+        //var_dump($dados);
         $query_usuario = "SELECT id, nome, email, senha, telefone, endereco, cidade, estado 
                         FROM usuario
                         WHERE email =:email
@@ -50,12 +50,13 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 $query_ativo = $conn->prepare("UPDATE usuario SET ativo ='1' WHERE  id= :id");
                 $query_ativo->bindValue("id", $_SESSION['id']);
                 $query_ativo->execute();
+                $_SESSION['logado'] = '<script>alert("Logado com sucesso!")</script>';
                 header("Location: ../index.php");
             }else{
-                $_SESSION['msg'] = "Usuário ou senha inválido";
+                $_SESSION['msg'] = '<script>alert("Usuário ou senha inválido")</script>';
             }
         }else{
-            $_SESSION['msg'] = "Erro: Usuário não encontrado ou senha inválida";
+            $_SESSION['msg'] = '<script>alert("Erro: Usuário não encontrado ou senha inválida")</script>';
         }
 
         //'".$dados['usuario']."'

@@ -44,7 +44,7 @@ include_once 'conexao.php';
                     }
                 }
             }else{
-                $_SESSION['msg'] = "<p style = 'color: black'>Senha atualizada com sucesso!</p>";
+                $_SESSION['msg'] = '<script>alert("Senha atualizada com sucesso!")</script>';
                 header("Location: login.php");
             }
         }else{
