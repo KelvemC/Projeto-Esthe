@@ -95,8 +95,9 @@ class Usuario{
                 $sql->bindValue(':cidade', $this->getCidade());
                 $sql->bindValue(':estado', $this->getEstado());
                 $sql->execute();
-                
-                header("Location: index.php");
+                session_start();
+                $_SESSION['msg'] = '<script>alert("Cadastro foi um sucesso!");</script>';
+                header("Location: ../index.php");
                 exit;
             }else{
                 header("Location: Cadastro.php");
@@ -194,7 +195,7 @@ class Usuario{
 }
 
 #estanciando a classe Usuario:
-
+session_start();
 $usuario = new Usuario();
 if(isset($_POST["OP"])){
     $escolha = $_POST["OP"];
