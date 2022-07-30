@@ -46,7 +46,11 @@ ob_start()#serve para limpar o buffer e não causar erro.
                             echo "<a class='contact-btn' href='login/dashboard.php'>Agendar</a>";
                             echo "<a class='contact-btn' href='./login/sair.php'>Sair</a>";
                         }else{
-                            echo "<a class='contact-btn' href='criarConta/cadastroConta.html'>Cadastro</a>";
+                            if(isset($_SESSION['msg'])){
+                                echo $_SESSION['msg'];
+                                unset($_SESSION['msg']);
+                            }
+                            echo "<a class='contact-btn' href='./criarConta/contaNormalouProfissional.html'>Cadastro</a>";
                             echo "<a href='./login/login.php'>Login</a>";
                         }
                     ?>
