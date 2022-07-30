@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once './conexao.php';
 ob_start() #serve para limpar o buffer e não causar erro.
 
