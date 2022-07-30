@@ -10,67 +10,68 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/style.css">
 
   <title>Cadastro</title>
 </head>
 
 <body>
+  <div class="logo-menu">
+    <a href="/"><img src="../images/logo.svg" /></a>
+  </div>
   <div class="form-cadastro">
     <div class="form">
-      <form action="../CrudPDO/Crud.php">
+      <form action="../CrudPDO/Crud.php" method="POST">
         <h1>Cadastro Estabelecimento</h1>
         <br/>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Nome do estabelecimento</label>
-            <input type="text" class="form-control" id="inputEsta" placeholder="Nome do estabelecimento">
+        <div class = "form-row">
+          <label>Nome</label>
+          <input type="text" name="nome" placeholder="Insira o nome do estabelecimento"/>
+          
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Insira o seu email"/>
+          
+          <label>Senha</label>
+          <input type="password" name="senha" placeholder="Insira sua senha"/>
+          
+          <label>Telefone</label>
+          <input type="text" name="telefone" placeholder="Insira o número de telefone"/>
+          
+          <label>Celular</label>
+          <input type="text" name="celular" placeholder="Insira o número do celular"/>
+          
+          <label>Serviço</label>
+          <input type="text" name="servico" placeholder="Insira o nome do serviço"/>
+          
+          <label>Rua</label>
+          <input type="text" name="rua" placeholder="Insira o nome da rua"/>
+          
+          <label>Bairo</label>
+          <input type="text" name="bairro" placeholder="Insira o nome do bairro"/>
+          
+          <label>Número °</label>
+          <input type="text" name="numero" placeholder="Insira o número"/>
+          
+          <label>Cidade</label>
+          <input type="text" name="cidade" placeholder="Insira o nome da cidade"/>
+          <label>CEP</label>
+          <input type="text" name="cep" placeholder="Insira o CEP"/>
+          <label class = "form-row">Estado</label>
+          <select class="form-control" id="estados" name = "estados">
+            <option>Escolha</option>
+            <option value="SP">SP</option>
+            <option value="PE">PE</option>
+            <option value="BA">BA</option>
+            <option value="SC">SC</option>
+            <option value="CE">CE</option>
+            <option value="PR">PR</option>
+          </select>
           </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Serviço</label>
-            <input type="Serviço" class="form-control" id="inputservi" placeholder="Serviço">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Senha</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAddress">Endereço</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
-        </div>
-        <div class="form-group">
-          <label for="inputAddress2">Bairro</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartamento, hotel, casa, etc.">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Cidade</label>
-            <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputEstado">Estado</label>
-            <select id="inputEstado" class="form-control">
-              <option selected>PE</option>
-              <option selected>PB</option>
-              <option selected>Escolher...</option>
-              <option>...</option>
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputCEP">CEP</label>
-            <input type="text" class="form-control" id="inputCEP">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-        <p class="message">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
+          <br>
+          <input type="hidden" name="OP" value="cadastroPRO">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <p class="message">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
+          
       </form>
     </div>
   </div>
