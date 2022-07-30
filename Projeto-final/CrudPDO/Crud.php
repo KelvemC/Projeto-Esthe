@@ -1,4 +1,5 @@
 <?php
+include './editCadastroPro.php';
 class Usuario{
     private $nome;
     private $email;
@@ -110,7 +111,59 @@ class Usuario{
         //quando ele salvar, podemos pedir para retornar a página index.
         //header("Location: index.php");
     }
+    //Cadastrar conta profissional
+    function cadastroPro(){
+        $this->nome = filter_input(INPUT_POST,'nome');
+        $this->email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $this->senha = password_hash((filter_input(INPUT_POST, 'senha')), PASSWORD_DEFAULT);
+        $this->telefone = filter_input(INPUT_POST, 'telefone');
+        $celular = filter_input(INPUT_POST, 'celular');
+        $servico = filter_input(INPUT_POST, 'servico');
+        $rua = filter_input(INPUT_POST, 'rua');
+        $bairro = filter_input(INPUT_POST, 'bairro');
+        $numero = filter_input(INPUT_POST, 'numero');
+        $this->cidade = filter_input(INPUT_POST, 'cidade');
+        $cep = filter_input(INPUT_POST, 'cep');
+        $this->estado = $_POST['estados'];
 
+        //inserindo os dados do post no banco de dados e fazendo validação.
+        //se tiver nome e email:
+        if($this->nome && $this->email){
+            //Esse comando serve para fazer com que não aconteça duplicação de email.
+            $sql = $this->Conectar()->prepare("SELECT * FROM usuario WHERE email = :email");
+            $sql->bindValue(':email', $this->getEmail());
+            $sql->execute();
+               
+            //se não tiver nenhum email cadastrado
+            if($sql->rowCount() === 0){
+
+                $sql = $this->Conectar()->prepare("INSERT INTO estabelecimento (nome, email, senha, telefone, celular, servico, rua, bairro, numero, cidade, cep, estado) VALUES (:nome, :email, :senha, :telefone, :celular, :servico, :rua, :bairro, :numero, :cidade, :cep, :estado)");
+                $sql->bindValue(':nome', $this->getNome());
+                $sql->bindValue(':email', $this->getEmail());
+                $sql->bindValue(':senha', $this->getSenha());
+                $sql->bindValue(':telefone', $this->getTelefone());
+                $sql->bindValue(':celular', $celular);
+                $sql->bindValue(':servico', $servico);
+                $sql->bindValue(':rua', $rua);
+                $sql->bindValue(':bairro', $bairro);
+                $sql->bindValue(':numero', $numero);
+                $sql->bindValue(':cidade', $this->getCidade());
+                $sql->bindValue(':cep', $cep);
+                $sql->bindValue(':estado', $this->getEstado());
+                $sql->execute();
+                session_start();
+                $_SESSION['msg'] = '<script>alert("O cadastro profissional foi um sucesso!");</script>';
+                header("Location: ../index.php");
+                exit;
+            }else{
+                header("Location: Cadastro.php");
+            }
+        }else{
+            header("Location: Cadastro.php");
+            exit;
+        }
+        
+    }
     //Pegar as informações que deseja atualizar
     function PegaInfo(){ 
         $usuario = [];
@@ -150,7 +203,7 @@ class Usuario{
             return $lista;
         }  
     }
-
+    
     function cadastroEdit(){
         $id = filter_input(INPUT_POST, 'id');
         $nome = filter_input(INPUT_POST, 'nome');
@@ -166,6 +219,9 @@ class Usuario{
            $sql->bindValue(':telefone', $telefone);
            $sql->bindValue(':endereco', $endereco);
            $sql->execute();
+           if(!$sql->execute()){
+            return "./editCadastroPro.php";
+           }
            session_start();
            $_SESSION['nome'] = $nome;
            $_SESSION['email'] = $email;
@@ -210,6 +266,9 @@ if(isset($_POST["OP"])){
             
             //código a ser executado se a expressão for igual ao valor2
             $usuario->cadastroEdit();
+            break;
+        case 'cadastroPRO':
+            $usuario->cadastroPro();
             break;
     }
 }
