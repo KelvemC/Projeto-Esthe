@@ -18,5 +18,5 @@
 - Recuperação de senha foi adicionado :white_check_mark:
 - Usuário Ativo ou não adicionado :white_check_mark:
 - Cadastro de conta Profissional :white_check_mark
-- Login contra Profissional :white_check_mark
-- Edição de conta Profissional :white_check_mark
+- Login contra Profissional :white_check_mark:
+- Edição de conta Profissional :white_check_mark:
