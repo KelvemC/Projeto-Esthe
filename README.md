@@ -20,3 +20,4 @@
 - Cadastro de conta Profissional :white_check_mark:
 - Login conta Profissional :white_check_mark:
 - Edição de conta Profissional :white_check_mark:
+- Adicionar a conexão CRUP ❌
