@@ -8,11 +8,13 @@ ob_start()#serve para limpar o buffer e não causar erro.
 <html lang="pt-br">
 <head>
     <title>Meu Projeto Final</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
 
@@ -28,32 +30,43 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 <div class="logo-menu">
                     <a href="/"><img src="images/logo.svg" /></a>
                 </div>
-                <div class="items-menu">
-                    <a href="#">Início</a>
-                    <a href="estabelecimentos/searchEstabelecimento.html">Estabelecimentos</a>
-                    
-                    <?php
-                        if(isset($_SESSION['nome'])){
-                            if(isset($_SESSION['logado'])){
-                                echo $_SESSION['logado'];
-                                unset($_SESSION['logado']);
+                <div id="menu_desktop">
+                    <div class="items-menu d-flex flex-row align-items-center">
+                        <a href="#">Início</a>
+                        <a href="estabelecimentos/searchEstabelecimento.html">Estabelecimentos</a>
+                        
+                        <?php
+                            if(isset($_SESSION['nome'])){
+                                if(isset($_SESSION['logado'])){
+                                    echo $_SESSION['logado'];
+                                    unset($_SESSION['logado']);
+                                }
+                                
+                                echo " 
+                                    <a class='contact-btn' href='../login/dashboard.php'>Agendar</a>
+                                    <div class='flex-shrink-0 dropdown'>
+                                        <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+                                            <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
+                                        </a>
+                                        <ul class='dropdown-menu text-small shadow'>
+                                            <li><a style='color: black' href='./perfilConta/perfil.php'>Perfil</a></li>
+                                            <li><a style='color: black' href='./AgendamentoCliente/agendamentos_do_cliente.php'>Agendamentos</a></li>
+                                            <li>
+                                                <hr class='dropdown-divider'>
+                                            </li>
+                                            <li><a style='color: black' href='./login/sair.php'>Sair</a></li>
+                                        </ul>
+                                    </div>";
+                            }else{
+                                if(isset($_SESSION['msg'])){
+                                    echo $_SESSION['msg'];
+                                    unset($_SESSION['msg']);
+                                }
+                                echo "<a class='contact-btn' href='./criarConta/contaNormalouProfissional.html'>Cadastro</a>";
+                                echo "<a href='./login/login.php'>Login</a>";
                             }
-                            echo "<a style='color:midnightblue'>";
-                            echo "<a href = './perfilConta/perfil.php'>";
-                            echo $_SESSION['nome'];
-                            echo "</a>";
-                            echo "</a>";
-                            echo "<a class='contact-btn' href='login/dashboard.php'>Agendar</a>";
-                            echo "<a class='contact-btn' href='./login/sair.php'>Sair</a>";
-                        }else{
-                            if(isset($_SESSION['msg'])){
-                                echo $_SESSION['msg'];
-                                unset($_SESSION['msg']);
-                            }
-                            echo "<a class='contact-btn' href='./criarConta/contaNormalouProfissional.html'>Cadastro</a>";
-                            echo "<a href='./login/login.php'>Login</a>";
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
                 <div class =  "items-menu-mobile">
                     <i class="fa fa-bars" aria-hidden="true"></i>
@@ -70,9 +83,52 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 <br />
                 <p>E veja resultados expressivos dia após dia</p>
                 <br />
-                <div class = "mockup-foto">
-                    <img src="images/macbook mockup.svg">
+                <div class="mockup">
+
+                <div id="agendar" class="mockup-foto">
+                    <img src="">
                 </div>
+                <div class="backgroundIMG">
+
+                    <h4>Agende Seu Serviço</h4>
+                    <h2>Faça Seu Agendamento</h3>
+
+                        <form action="../AgendamentoCliente/agendamentoConcluido.html">
+
+                            <p>Por favor, selecione o serviço:</p>
+
+                            <div class="form-group col-md-8 m-3">
+                                <label>Serviço:</label>
+                                <select id="inputEstado" class="form-control rounded-1">
+                                    <option selected>Pedicuri</option>
+                                    <option selected>Cabelereiro</option>
+                                    <option selected>Barbearia</option>
+                                    <option selected>Massagem</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8 m-3">
+                                <label for="inputEstado">Funcionário:</label>
+                                <select id="inputEstado" class="form-control  rounded-1">
+                                    <option selected>Larissa</option>
+                                    <option selected>Carlos</option>
+                                    <option selected>Maria Júlia</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-8 m-3">
+                                <label>Data</label>
+                                <input type="date" class="rounded-1" name="data" id="data">
+                                <input type="time" class="rounded-1" name="hora" id="hora">
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Agendar</button>
+
+                        </form>
+                </div>
+            </div>
 
             </div>
             <!--mockup-->
@@ -247,7 +303,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
             </div>
         </div>
     </footer>
-
+    <script src="popper.min.js"></script>
     <script src="jquery.js"></script>
     <script src="slick.min.js"></script>
     <script>
