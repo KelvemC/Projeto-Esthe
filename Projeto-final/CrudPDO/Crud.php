@@ -98,14 +98,16 @@ class Usuario{
                 $sql->execute();
                 session_start();
                 $_SESSION['msg'] = '<script>alert("Cadastro foi um sucesso!");</script>';
-                header("Location: ../index.php");
+                header('Location: ../index.php');
                 exit;
             }else{
-                header("Location: Cadastro.php");
+                header('Location: Cadastro.php');
+                exit;
             }
         }else{
-            header("Location: Cadastro.php");
+            header('Location:Cadastro.php');
             exit;
+            
         }
 
         //quando ele salvar, podemos pedir para retornar a página index.
@@ -153,13 +155,15 @@ class Usuario{
                 $sql->execute();
                 session_start();
                 $_SESSION['msg'] = '<script>alert("O cadastro profissional foi um sucesso!");</script>';
-                header("Location: ../index.php");
+                header('Location: ../index.php');
                 exit;
+                
             }else{
-                header("Location: Cadastro.php");
+                header('Location:Cadastro.php');
+                exit;
             }
         }else{
-            header("Location: Cadastro.php");
+            header('Location:Cadastro.php');
             exit;
         }
         
@@ -182,11 +186,12 @@ class Usuario{
                 $usuario = $sql->fetch(PDO::FETCH_ASSOC);
                 return $usuario;
             }else{
-                header("Location: index.php");
+                header('Location:index.php');
                 exit;
             }
         }else{
-            header("Location: index.php");
+            header('Location:index.php');
+            exit;
         }
 
     }
@@ -227,12 +232,12 @@ class Usuario{
            $_SESSION['email'] = $email;
            $_SESSION['telefone'] = $telefone;
            $_SESSION['endereco'] = $endereco;
-           header("Location: index.php");
+           header('Location:index.php');
            exit;
             
         }else{
-            header("Location: index.php");
-            exit;
+            header('Location:index.php');
+           exit;
         }
     }
     //DELETE
@@ -245,13 +250,13 @@ class Usuario{
             $sql->execute();
         }
 
-        header("Location: index.php");
+        header('Location:index.php');
+        exit;
     }
 
 }
 
 #estanciando a classe Usuario:
-session_start();
 $usuario = new Usuario();
 if(isset($_POST["OP"])){
     $escolha = $_POST["OP"];

@@ -22,11 +22,11 @@ if ($id && $nome && $email) {
     $_SESSION['nome'] = $nome;
     $_SESSION['email'] = $email;
     $_SESSION['telefone'] = $telefone;
-    header("Location: ../index.php");
-    exit;
+    echo "<script>window.location=' ../index.php';</script>";
 } else {
-    header("Location: index.php");
-    exit;
+    for($i = 0; $i<1; $i++){
+        echo "<script>window.location='./index.php';</script>";
+    }
 }
 
 ?>

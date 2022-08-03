@@ -5,7 +5,7 @@ include_once 'conexao.php';
 #se o nome do usuário não estiver no banco de dados, vai apresentar erro
 if((!isset($_SESSION['id'])) and (!isset($_SESSION['nome']))){
     $_SESSION['msg'] = "Usuário ou senha inválido, necessário realizar o login";
-    header("Location: login.php");
+    header('Location:login.php');
 }
 ?>
 <!DOCTYPE html>

@@ -9,5 +9,5 @@ $query_ativo->execute();
 
 unset($_SESSION['id'], $_SESSION['nome']);
 $_SESSION['msg'] = '<script>alert("Deslogado com sucesso!");</script>';
-header("Location: ./login.php");
+echo "<script>window.location='./login.php';</script>";
 ?>

@@ -63,7 +63,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
                 $query_ativo->bindValue("id", $_SESSION['id']);
                 $query_ativo->execute();
                 $_SESSION['logado'] = '<script>alert("Logado com sucesso!")</script>';
-                header("Location: ../index.php");
+                header('Location:../index.php');
             } else {
                 $_SESSION['msg'] = '<script>alert("Usuário ou senha inválido")</script>';
             }

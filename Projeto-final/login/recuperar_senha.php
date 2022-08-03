@@ -88,7 +88,8 @@ $mail = new PHPMailer(true);
                     $mail->send();
 
                     $_SESSION['msg'] = '<script>alert("Senha atualizada com sucesso")</script>';
-                    header("Location: login.php");
+                    header('Location:login.php');
+                    exit;
                 } catch (Exception $e) {
                     echo '<script>alert("Erro: Email não enviado com sucesso. Error:{$mail->ErrorInfo}")</script>';
                 }
@@ -97,7 +98,7 @@ $mail = new PHPMailer(true);
             }
         } else {
             $_SESSION['msg'] = '<script>alert("Erro: Usuário não encontrado!")</script>';
-            header("Location: recuperar_senha.php");
+            header('Location:recuperar_senha.php');
         }
     }
     if (isset($_SESSION['msg'])) {

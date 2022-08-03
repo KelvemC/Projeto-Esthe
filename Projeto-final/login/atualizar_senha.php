@@ -53,11 +53,13 @@ include_once 'conexao.php';
             }
         } else {
             $_SESSION['msg'] = '<script>alert("Senha atualizada com sucesso!")</script>';
-            header("Location: login.php");
+            header('Location:login.php');
+            exit;
         }
     } else {
         $_SESSION['msg'] = "<p style = 'color: #ff0000'>Erro: Link inválido, solicite novo link para atualizar a senha!</p>";
-        header("Location: recuperar_senha.php");
+        header('Location:recuperar_senha.php');
+        exit;
     }
     ?>
     <div class="logo-menu">
