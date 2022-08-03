@@ -74,7 +74,6 @@ ob_start()#serve para limpar o buffer e não causar erro.
                     <img src="images/macbook mockup.svg">
                 </div>
 
-                <div class = "backgroundIMG"></div>
             </div>
             <!--mockup-->
         </div>
