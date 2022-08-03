@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./estiloContaNormal.css">
 </head>
 <body>
   <div class="logo-menu">
@@ -16,13 +16,17 @@
           <h1>Cadastro</h1>
           <form class="login-form" action="../CrudPDO/Crud.php" method="POST">
             
-            <input type="text" placeholder="Seu nome" name = "nome"/>
-            <input type="email" placeholder="Seu email" name="email"/>
-            <input type="password" placeholder="Sua senha" name="senha"/>
-            <input type="tel" placeholder="(DDD9XXXX-XXXX)" name="telefone"/>
-            <input type="text" placeholder="Rua tal n°" name="endereço"/>
-            <input type="text" placeholder="Insira o nome da sua cidade" name="cidade"/>
-            <input type="text" placeholder="Insira o seu estado" name="estado"/>
+            <div class="inputs">
+
+              <input class="input_maior" type="text" placeholder="Seu nome" name="nome" />
+              <input class="input_maior" type="email" placeholder="Seu email" name="email" />
+              <input class="input_menor" type="password" placeholder="Sua senha" name="senha" />
+              <input class="input_menor" type="tel" placeholder="(DDD9XXXX-XXXX)" name="telefone" />
+              <input class="input_menor" type="text" placeholder="Insira o seu estado" name="estado" />
+              <input class="input_menor" type="text" placeholder="Insira o nome da sua cidade" name="cidade" />
+              <input class="input_maior" type="text" placeholder="Rua tal n°" name="endereço" />
+                
+            </div>
             <button type="submit">Criar conta</button>
             <input type="hidden" name="OP" value="cadastrar"/>
             <p class="message" style="text-align: center">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
