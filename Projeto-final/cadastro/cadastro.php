@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
 
   <title>Cadastro</title>
 </head>
@@ -25,37 +25,45 @@
         <h1>Cadastro Estabelecimento</h1>
         <br/>
         <div class = "form-row">
-          <label>Nome</label>
-          <input type="text" name="nome" placeholder="Insira o nome do estabelecimento"/>
+         
+          <input class = "input_maior" type="text" name="nome" placeholder="Insira o nome do estabelecimento"/>
           
-          <label>Email</label>
-          <input type="email" name="email" placeholder="Insira o seu email"/>
+          <input class = "input_maior"type="email" name="email" placeholder="Insira o seu email"/>
+        </div>
+        
+        <div class = "form-row">  
           
-          <label>Senha</label>
-          <input type="password" name="senha" placeholder="Insira sua senha"/>
+          <input class = "input_maior"type="password" name="senha" placeholder="Insira sua senha"/>
           
-          <label>Telefone</label>
-          <input type="text" name="telefone" placeholder="Insira o número de telefone"/>
+          <input class = "input_maior"type="text" name="telefone" placeholder="Insira o número de telefone"/>
+        </div> 
+        
+        <div class = "form-row">
           
-          <label>Celular</label>
-          <input type="text" name="celular" placeholder="Insira o número do celular"/>
+          <input class = "input_maior"type="text" name="celular" placeholder="Insira o número do celular"/>
           
-          <label>Serviço</label>
-          <input type="text" name="servico" placeholder="Insira o nome do serviço"/>
+          <input class = "input_maior" type="text" name="servico" placeholder="Insira o nome do serviço"/>
+        </div>
+
+        <div class = "form-row">
           
-          <label>Rua</label>
-          <input type="text" name="rua" placeholder="Insira o nome da rua"/>
+          <input class = "input_maior" type="text" name="rua" placeholder="Insira o nome da rua"/>
           
-          <label>Bairo</label>
-          <input type="text" name="bairro" placeholder="Insira o nome do bairro"/>
+         
+          <input class = "input_maior" type="text" name="bairro" placeholder="Insira o nome do bairro"/>
+        </div>
+        
+        <div class = "form-row">
           
-          <label>Número °</label>
-          <input type="text" name="numero" placeholder="Insira o número"/>
+          <input class = "input_maior" type="text" name="numero" placeholder="Insira o número"/>
           
-          <label>Cidade</label>
-          <input type="text" name="cidade" placeholder="Insira o nome da cidade"/>
-          <label>CEP</label>
-          <input type="text" name="cep" placeholder="Insira o CEP"/>
+          <input class = "input_maior" type="text" name="cidade" placeholder="Insira o nome da cidade"/>
+        </div>
+
+        <div class = "form-row">
+          
+          <input class = "input_maior" type="text" name="cep" placeholder="Insira o CEP"/>
+          
           <label class = "form-row">Estado</label>
           <select class="form-control" id="estados" name = "estados">
             <option>Escolha</option>
@@ -65,13 +73,12 @@
             <option value="SC">SC</option>
             <option value="CE">CE</option>
             <option value="PR">PR</option>
-          </select>
-          </div>
+          </select>  
+        </div>
           <br>
           <input type="hidden" name="OP" value="cadastroPRO">
           <button type="submit" class="btn btn-primary">Cadastrar</button>
           <p class="message">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
-          
       </form>
     </div>
   </div>
