@@ -57,6 +57,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
                 $_SESSION['endereco'] = $row_usuario['endereco'];
                 $_SESSION['cidade'] = $row_usuario['cidade'];
                 $_SESSION['estado'] = $row_usuario['estado'];
+                $_SESSION['contaS'] = 'simples';
 
                 //Ativando o usuário após o login usando a sessão id.
                 $query_ativo = $conn->prepare("UPDATE usuario SET ativo ='1' WHERE  id= :id");

@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once './login/conexao.php';
 ob_start()#serve para limpar o buffer e não causar erro.
 ?>
 
@@ -88,46 +87,58 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 <div id="agendar" class="mockup-foto">
                     <img src="">
                 </div>
-                <div class="backgroundIMG">
-
-                    <h4>Agende Seu Serviço</h4>
-                    <h2>Faça Seu Agendamento</h3>
-
-                        <form action="../AgendamentoCliente/agendamentoConcluido.html">
-
-                            <p>Por favor, selecione o serviço:</p>
-
-                            <div class="form-group col-md-8 m-3">
-                                <label>Serviço:</label>
-                                <select id="inputEstado" class="form-control rounded-1">
-                                    <option selected>Pedicuri</option>
-                                    <option selected>Cabelereiro</option>
-                                    <option selected>Barbearia</option>
-                                    <option selected>Massagem</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-8 m-3">
-                                <label for="inputEstado">Funcionário:</label>
-                                <select id="inputEstado" class="form-control  rounded-1">
-                                    <option selected>Larissa</option>
-                                    <option selected>Carlos</option>
-                                    <option selected>Maria Júlia</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-8 m-3">
-                                <label>Data</label>
-                                <input type="date" class="rounded-1" name="data" id="data">
-                                <input type="time" class="rounded-1" name="hora" id="hora">
-                            </div>
-
-                            <button type="submit" class="btn btn-success">Agendar</button>
-
-                        </form>
-                </div>
+                <?php
+                if(isset($_SESSION['contaS'])){ 
+                    echo "<div class='backgroundIMG'>
+    
+                        <h4>Agende Seu Serviço</h4>
+                        <h2>Faça Seu Agendamento</h3>
+                            
+                            <form action='./CrudPDO/Crud.php' method='POST''>
+    
+                                <p>Por favor, selecione o serviço:</p>
+    
+                                <div class='form-group col-md-8 m-3'>
+                                    <label>Serviço:</label>
+                                    
+                                    <select id='inputEstado' class='form-control rounded-1' name = 'servico'>
+                                        <option selected>Pedicuri</option>
+                                        <option selected>Cabelereiro</option>
+                                        <option selected>Barbearia</option>
+                                        <option selected>Massagem</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+    
+                                <div class='form-group col-md-8 m-3'>
+                                    <label for='inputEstado'>Funcionário:</label>
+                                    <select id='inputEstado' class='form-control  rounded-1' name='funcionario'>
+                                        <option selected>Larissa</option>
+                                        <option selected>Carlos</option>
+                                        <option selected>Maria Júlia</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+    
+                                <div class='form-group col-md-8 m-3' name = 'data-hora'>
+                                    <label>Data</label>
+                                    <input type='date' class='rounded-1' name='data' id='data'>
+                                    <input type='time' class='rounded-1' name='hora' id='hora'>
+                                </div>
+                                <input type='hidden' name='OP' value='Agendar'>
+                                <button type='submit' class='btn btn-success'>Agendar</button>
+    
+                            </form>
+                    </div>";
+                }else if(isset($_SESSION['contaP'])){
+                    echo "<img src = './images/agendamento.png' style = 'bottom: 50;'></img>";
+                }else if(!(isset($_SESSION['contaS'])) || !(isset($_SESSION['contaP']))){
+                    echo "<img src = './images/agendamento.png'></img>";
+                    
+                }
+                ?>
+                
+                
             </div>
 
             </div>

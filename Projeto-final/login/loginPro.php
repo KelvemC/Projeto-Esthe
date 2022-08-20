@@ -40,6 +40,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
                 $_SESSION['cidade'] = $row_usuario['cidade'];
                 $_SESSION['cep'] = $row_usuario['cep'];
                 $_SESSION['estado'] = $row_usuario['estado'];
+                $_SESSION['contaP'] = "profissional";
                 
 
                 //Ativando o usuário após o login usando a sessão id.

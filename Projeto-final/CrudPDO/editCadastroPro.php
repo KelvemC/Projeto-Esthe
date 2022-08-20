@@ -17,16 +17,13 @@ if ($id && $nome && $email) {
     $sql->bindValue(':email', $email);
     $sql->bindValue(':id', $id);
     $sql->bindValue(':telefone', $telefone);
-    $sql->execute();
-    session_start();
+    $sql->execute();    
     $_SESSION['nome'] = $nome;
     $_SESSION['email'] = $email;
     $_SESSION['telefone'] = $telefone;
     echo "<script>window.location=' ../index.php';</script>";
 } else {
-    for($i = 0; $i<1; $i++){
-        echo "<script>window.location='./index.php';</script>";
-    }
+    echo "<script>window.location='./index.php';</script>";
 }
 
 ?>

@@ -8,6 +8,12 @@ $query_ativo->bindValue("id", $_SESSION['id']);
 $query_ativo->execute();
 
 unset($_SESSION['id'], $_SESSION['nome']);
+
+if(isset($_SESSION['contaS'])){
+    unset($_SESSION['contaS']);
+}
+else if(isset($_SESSION['contaP'])){
+    unset($_SESSION['contaP']);
+}
 $_SESSION['msg'] = '<script>alert("Deslogado com sucesso!");</script>';
 echo "<script>window.location='./login.php';</script>";
-?>
