@@ -30,7 +30,23 @@ class Exibir{
         return $sql;
     }
 
+
+    function exibirEstabelecimentoAgenda(){
+        $Array = array();
+        $sqlESTB = $this->Conectar()->prepare("SELECT estabelecimento_id FROM agendamento");
+        $sqlESTB->execute();
+        foreach($sqlESTB as $id){
+            $sql = $this->Conectar()->prepare("SELECT nome FROM estabelecimento WHERE id = :id");
+            $sql->bindValue(':id',$id['estabelecimento_id']);
+            $sql->execute();
+            $nome = $sql->fetch(PDO::FETCH_ASSOC);
+            array_push($Array, $nome['nome']);
+    }
+    return $Array;
+    }
+
     function exibirData(){
+        $Array = array();
         $sqlIDagn = $this->Conectar()->prepare("SELECT idagendamento FROM agendamento");
         $sqlIDagn->execute();
         foreach($sqlIDagn as $idAgenda){
@@ -38,13 +54,35 @@ class Exibir{
             $sqlData->bindValue(':id',$idAgenda['idagendamento']);
             $sqlData->execute();
             $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
-            echo "<div>";
-            echo "<img src='../images/ícones/ICONE1/calendar3.svg' alt=''>";
-            echo "<span class='m-2'>";
-            echo $dataAgenda['data'];
-            echo "</span>";
-            echo "</div>";
+            array_push($Array, $dataAgenda['data']);
         }
+        return $Array;
+    }
+
+    function exibirHorario(){
+        $Array = array();
+        $horaSql = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM `agendamento`");
+        $horaSql->execute();
+        foreach($horaSql as $hora){
+            
+            array_push($Array, $hora['data_formatada']);
+            
+        }
+        return $Array;
+    }
+
+    function exibirServico(){
+        $Array = array();
+        $sqlService = $this->Conectar()->prepare("SELECT servico FROM agendamento");
+        $sqlService->execute();
+        foreach($sqlService as $service){
+            
+            array_push($Array, $service['servico']);
+            
+            
+            
+        }
+        return $Array;
     }
 }
 ?>
