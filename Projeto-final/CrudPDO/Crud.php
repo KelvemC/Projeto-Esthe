@@ -264,6 +264,12 @@ class Usuario
         exit;
     }
 
+    function obertIdEstabelecimento($nomeEstabelecimento){
+        $sql = $this->Conectar()->prepare("SELECT id FROM estabelecimento WHERE nome = :nome");
+        $sql->bindValue(':nome', $nomeEstabelecimento);
+        $sql->execute();
+    }
+
     function Agendar()
     {
         $hora = date("h:i:sa");
@@ -296,11 +302,6 @@ class Usuario
         }
     }
 
-    function exibirEstabelecimento(){
-        $sql = $this->Conectar()->prepare("SELECT nome, id FROM estabelecimento");
-        $sql->execute();
-        return $sql;
-    }
 }
 #estanciando a classe Usuario:
 $usuario = new Usuario();

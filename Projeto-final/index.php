@@ -1,5 +1,9 @@
 <?php
 session_start();
+include './exibir_OO.php';
+$dados = new Exibir();
+$lista = $dados->exibirEstabelecimento();
+
 ob_start()#serve para limpar o buffer e não causar erro.
 ?>
 
@@ -97,7 +101,19 @@ ob_start()#serve para limpar o buffer e não causar erro.
                             <form action='./CrudPDO/Crud.php' method='POST''>
     
                                 <p>Por favor, selecione o serviço:</p>
-    
+
+                                <div class='form-group col-md-8 m-3'>
+                                <label>Estabelecimentos:</label>";
+                                
+                            echo "<select id='inputEstab' class='form-control rounded-1' name = 'estabelecimentos'>";
+                            foreach ($lista as $estabelecimentos):
+                                echo "<option selected>";
+                                echo $estabelecimentos['nome'];
+                                echo "</option>";
+                            endforeach;
+                            echo "</select>
+                            </div>
+
                                 <div class='form-group col-md-8 m-3'>
                                     <label>Serviço:</label>
                                     
