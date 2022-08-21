@@ -264,23 +264,26 @@ class Usuario
         exit;
     }
 
-    function obertIdEstabelecimento($nomeEstabelecimento){
+    function obterIdESTB($estb){
         $sql = $this->Conectar()->prepare("SELECT id FROM estabelecimento WHERE nome = :nome");
-        $sql->bindValue(':nome', $nomeEstabelecimento);
+        $sql->bindValue(':nome', $estb);
         $sql->execute();
+        $id = $sql->fetch(PDO::FETCH_ASSOC);
+        return $id['id'];
     }
 
     function Agendar()
     {
-        $hora = date("h:i:sa");
+        $nomeEstb = filter_input(INPUT_POST, 'estabelecimentos');
         $user_id = $_SESSION['id'];
         $servico = filter_input(INPUT_POST, 'servico');
-        $funcionario = filter_input(INPUT_POST, 'funcionario');
+        #$funcionario = filter_input(INPUT_POST, 'funcionario');
         $data = filter_input(INPUT_POST, 'data');
-        $horario = date("$data H:i:s");
-        $id_tb = 1;
+        $horaInput = filter_input(INPUT_POST, 'hora');
+        $horario = date("$data $horaInput:s");
+        $id_tb = $this->obterIdESTB($nomeEstb);
 
-        if ($servico && $funcionario && $horario) {
+        if ($servico && $horario) {
             $sql = $this->Conectar()->prepare("SELECT * FROM agendamento WHERE horario = :horario");
             $sql->bindValue(':horario', $this->getEmail());
             $sql->execute();

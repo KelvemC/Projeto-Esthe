@@ -2,6 +2,10 @@
 session_start();
 
 include_once '../login/conexao.php';
+require '../exibir_OO.php';
+
+$dados = new Exibir();
+$lista = $dados->exibirEstabelecimento();
 ob_start() #serve para limpar o buffer e não causar erro.
 ?>
 
@@ -97,60 +101,87 @@ ob_start() #serve para limpar o buffer e não causar erro.
         </div>
 
         <hr style="border: 20px solid #000; width: 100%;">
+        <?php
+        #pegando todos os id do estabelecimentos que agendei;
+        $sqlESTB = $conn->prepare("SELECT estabelecimento_id FROM agendamento");
+        $sqlESTB->execute();
+            
+        $sqlIDagn = $conn->prepare("SELECT idagendamento FROM agendamento");
+        $sqlIDagn->execute();
+        
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "<div>";
+        foreach($sqlESTB as $id){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            #pegando os nomes do estabelecimentos apartir do id da query anterior.
+            $sql = $conn->prepare("SELECT nome FROM estabelecimento WHERE id = :id");
+            $sql->bindValue(':id',$id['estabelecimento_id']);
+            $sql->execute();
+            $nome = $sql->fetch(PDO::FETCH_ASSOC);
+            echo "<div>";
+            echo "<img src='../images/ícones/ICONE1/empresa.png' height='46' width='46' alt=''>";
+            echo "<span class='m-2'>";
+            echo $nome['nome'];
+            echo "</span>";
 
-        <ul class="list-group list-group-flush m-3">
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+        
+        echo "<div>";
+        #pegando a data
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        
+        foreach($sqlIDagn as $idAgenda){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            $sqlData = $conn->prepare("SELECT DATE_FORMAT (`horario`, '%d/%m/%Y') AS 'data' FROM agendamento WHERE idagendamento = :id");
+            $sqlData->bindValue(':id',$idAgenda['idagendamento']);
+            $sqlData->execute();
+            $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
+            echo "<div>";
+            echo "<img src='../images/ícones/ICONE1/calendar3.svg' alt=''>";
+            echo "<span class='m-2'>";
+            echo $dataAgenda['data'];
+            echo "</span>";
+            echo "</div>";
+        }
+        #-------------------------------------------------
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
 
-            <li class="list-group-item d-flex flex-row flex-wrap justify-content-between">
-                <div>
-                    <img src="../images/ícones/ICONE1/empresa.png" height="46" width="46" alt="">
-                    <span class="m-2">Empresa 1</span>
-                </div>
+        echo "<div>";
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        $horaSql = $conn->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM `agendamento`");
+        $horaSql->execute();
+        foreach($horaSql as $hora){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            echo "<span class='m-2'>";
+            echo $hora['data_formatada'];
+            echo "</span>";
+            
+            
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+        $sqlService = $conn->prepare("SELECT servico FROM agendamento");
+        $sqlService->execute();
 
-                <div>
-                    <img src="../images/ícones/ICONE1/calendar3.svg" alt="">
-                    <span class="m-2">Segunda-fiera, 26 de Julho de 2022</span>
-                </div>
-
-                <span class="m-2">11:23</span>
-                <span class="m-2">Limpeza de pele</span>
-                <span class="m-2">Finalizaso</span>
-            </li>
-
-            <li class="list-group-item d-flex flex-row flex-wrap justify-content-between">
-
-                <div>
-                    <img src="../images/ícones/ICONE1/empresa.png" height="46" width="46" alt="">
-                    <span class="m-2">Empresa 2</span>
-                </div>
-
-                <div>
-                    <img src="../images/ícones/ICONE1/calendar3.svg" alt="">
-                    <span class="m-2">Segunda-fiera, 26 de Julho de 2022</span>
-                </div>
-
-                <span class="m-2">11:23</span>
-                <span class="m-2">Limpeza de pele</span>
-                <span class="m-2">Finalizaso</span>
-
-            </li>
-
-            <li class="list-group-item d-flex flex-row flex-wrap justify-content-between">
-                <div>
-                    <img src="../images/ícones/ICONE1/empresa.png" height="46" width="46" alt="">
-                    <span class="m-2">Empresa 3</span>
-                </div>
-
-                <div>
-                    <img src="../images/ícones/ICONE1/calendar3.svg" alt="">
-                    <span class="m-2">Segunda-fiera, 26 de Julho de 2022</span>
-                </div>
-
-                <span class="m-2">11:23</span>
-                <span class="m-2">Limpeza de pele</span>
-                <span class="m-2">Finalizaso</span>
-            </li>
-
-        </ul>
+        echo "<div>";
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        foreach($sqlService as $service){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            echo "<span class='m-2'>";
+            echo $service['servico'];
+            echo "</span>";
+            
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+        
+        ?>
 
 
 

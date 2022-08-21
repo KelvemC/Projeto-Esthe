@@ -126,15 +126,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
                                     </select>
                                 </div>
     
-                                <div class='form-group col-md-8 m-3'>
-                                    <label for='inputEstado'>Funcionário:</label>
-                                    <select id='inputEstado' class='form-control  rounded-1' name='funcionario'>
-                                        <option selected>Larissa</option>
-                                        <option selected>Carlos</option>
-                                        <option selected>Maria Júlia</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
+                                
     
                                 <div class='form-group col-md-8 m-3' name = 'data-hora'>
                                     <label>Data</label>

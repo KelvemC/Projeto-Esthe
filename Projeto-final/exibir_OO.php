@@ -29,5 +29,22 @@ class Exibir{
         $sql->execute();
         return $sql;
     }
+
+    function exibirData(){
+        $sqlIDagn = $this->Conectar()->prepare("SELECT idagendamento FROM agendamento");
+        $sqlIDagn->execute();
+        foreach($sqlIDagn as $idAgenda){
+            $sqlData = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`, '%d/%m/%Y') AS 'data' FROM agendamento WHERE idagendamento = :id");
+            $sqlData->bindValue(':id',$idAgenda['idagendamento']);
+            $sqlData->execute();
+            $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
+            echo "<div>";
+            echo "<img src='../images/ícones/ICONE1/calendar3.svg' alt=''>";
+            echo "<span class='m-2'>";
+            echo $dataAgenda['data'];
+            echo "</span>";
+            echo "</div>";
+        }
+    }
 }
 ?>

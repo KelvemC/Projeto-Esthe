@@ -1,0 +1,54 @@
+echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+        
+        echo "<div>";
+        #pegando a data
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        
+        foreach($sqlIDagn as $idAgenda){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            $sqlData = $conn->prepare("SELECT DATE_FORMAT (`horario`, '%d/%m/%Y') AS 'data' FROM agendamento WHERE idagendamento = :id");
+            $sqlData->bindValue(':id',$idAgenda['idagendamento']);
+            $sqlData->execute();
+            $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
+            echo "<div>";
+            echo "<img src='../images/ícones/ICONE1/calendar3.svg' alt=''>";
+            echo "<span class='m-2'>";
+            echo $dataAgenda['data'];
+            echo "</span>";
+            echo "</div>";
+        }
+        #-------------------------------------------------
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+
+        echo "<div>";
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        $horaSql = $conn->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM `agendamento`");
+        $horaSql->execute();
+        foreach($horaSql as $hora){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            echo "<span class='m-2'>";
+            echo $hora['data_formatada'];
+            echo "</span>";
+            
+            
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
+        $sqlService = $conn->prepare("SELECT servico FROM agendamento");
+        $sqlService->execute();
+
+        echo "<div>";
+        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+        foreach($sqlService as $service){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            echo "<span class='m-2'>";
+            echo $service['servico'];
+            echo "</span>";
+            
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "</div>";
