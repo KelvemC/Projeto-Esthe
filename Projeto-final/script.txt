@@ -1,4 +1,28 @@
-echo "<ul class='list-group list-group-flush m-3'>";
+#pegando todos os id do estabelecimentos que agendei;
+        $sqlESTB = $conn->prepare("SELECT estabelecimento_id FROM agendamento");
+        $sqlESTB->execute();
+            
+        $sqlIDagn = $conn->prepare("SELECT idagendamento FROM agendamento");
+        $sqlIDagn->execute();
+        
+        echo "<ul class='list-group list-group-flush m-3'>";
+        echo "<div>";
+        foreach($sqlESTB as $id){
+            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
+            #pegando os nomes do estabelecimentos apartir do id da query anterior.
+            $sql = $conn->prepare("SELECT nome FROM estabelecimento WHERE id = :id");
+            $sql->bindValue(':id',$id['estabelecimento_id']);
+            $sql->execute();
+            $nome = $sql->fetch(PDO::FETCH_ASSOC);
+            echo "<div>";
+            echo "<img src='../images/ícones/ICONE1/empresa.png' height='46' width='46' alt=''>";
+            echo "<span class='m-2'>";
+            echo $nome['nome'];
+            echo "</span>";
+
+            
+        }
+        echo "<ul class='list-group list-group-flush m-3'>";
         echo "</div>";
         
         echo "<div>";
