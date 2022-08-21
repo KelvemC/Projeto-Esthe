@@ -6,6 +6,11 @@ require '../exibir_OO.php';
 
 $dados = new Exibir();
 $lista = $dados->exibirEstabelecimento();
+$datas = $dados->exibirData();
+$exibirESG = $dados->exibirEstabelecimentoAgenda();
+$exibirHora = $dados->exibirHorario();
+$exibirService = $dados->exibirServico();
+
 ob_start() #serve para limpar o buffer e não causar erro.
 ?>
 
@@ -19,6 +24,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -37,6 +43,13 @@ ob_start() #serve para limpar o buffer e não causar erro.
             width: 100%;
             background-color: #357236;
         }
+        table{
+  width: 100%;
+  margin-bottom : .5em;
+  table-layout: fixed;
+  text-align: center;
+  
+}
     </style>
 
 
@@ -101,88 +114,44 @@ ob_start() #serve para limpar o buffer e não causar erro.
         </div>
 
         <hr style="border: 20px solid #000; width: 100%;">
+        <table class='table' align='center'>
+        <thead class='table table-hover table-dark'>
+            <tr>
+                <th scope='col'>Nome</th>
+                <th scope='col'>Data</th>
+                <th scope='col'>Hora</th>
+                <th scope='col'>Serviço</th>
+                
+            </tr>
+        </thead>
         <?php
-        #pegando todos os id do estabelecimentos que agendei;
-        $sqlESTB = $conn->prepare("SELECT estabelecimento_id FROM agendamento");
-        $sqlESTB->execute();
-            
-        $sqlIDagn = $conn->prepare("SELECT idagendamento FROM agendamento");
-        $sqlIDagn->execute();
-        
-        echo "<ul class='list-group list-group-flush m-3'>";
-        echo "<div>";
-        foreach($sqlESTB as $id){
-            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-            #pegando os nomes do estabelecimentos apartir do id da query anterior.
-            $sql = $conn->prepare("SELECT nome FROM estabelecimento WHERE id = :id");
-            $sql->bindValue(':id',$id['estabelecimento_id']);
-            $sql->execute();
-            $nome = $sql->fetch(PDO::FETCH_ASSOC);
-            echo "<div>";
-            echo "<img src='../images/ícones/ICONE1/empresa.png' height='46' width='46' alt=''>";
-            echo "<span class='m-2'>";
-            echo $nome['nome'];
-            echo "</span>";
+        for($i = 0; $i<count($exibirESG); $i++){
+                    echo "<tr>";
+                        echo "<td>";
+                        echo $exibirESG[$i];
+                        echo "</td>";
+                    
+                        echo "<td>";
+                        echo $datas[$i];
+                        echo "</td>";
 
-            
-        }
-        echo "<ul class='list-group list-group-flush m-3'>";
-        echo "</div>";
-        
-        echo "<div>";
-        #pegando a data
-        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-        
-        foreach($sqlIDagn as $idAgenda){
-            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-            $sqlData = $conn->prepare("SELECT DATE_FORMAT (`horario`, '%d/%m/%Y') AS 'data' FROM agendamento WHERE idagendamento = :id");
-            $sqlData->bindValue(':id',$idAgenda['idagendamento']);
-            $sqlData->execute();
-            $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
-            echo "<div>";
-            echo "<img src='../images/ícones/ICONE1/calendar3.svg' alt=''>";
-            echo "<span class='m-2'>";
-            echo $dataAgenda['data'];
-            echo "</span>";
-            echo "</div>";
-        }
-        #-------------------------------------------------
-        echo "<ul class='list-group list-group-flush m-3'>";
-        echo "</div>";
+                        echo "<td>";
+                        echo $exibirHora[$i];
+                        echo "</td>";
 
-        echo "<div>";
-        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-        $horaSql = $conn->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM `agendamento`");
-        $horaSql->execute();
-        foreach($horaSql as $hora){
-            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-            echo "<span class='m-2'>";
-            echo $hora['data_formatada'];
-            echo "</span>";
-            
-            
-            
-        }
-        echo "<ul class='list-group list-group-flush m-3'>";
-        echo "</div>";
-        $sqlService = $conn->prepare("SELECT servico FROM agendamento");
-        $sqlService->execute();
+                        echo "<td>";
+                        echo $exibirService[$i];
+                        echo "</td>";
+                        
+                        
+                    echo "</tr>
+                
+                ";
+                
+        }        
 
-        echo "<div>";
-        echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-        foreach($sqlService as $service){
-            echo "<li class='list-group-item d-flex flex-row flex-wrap justify-content-between'>";
-            echo "<span class='m-2'>";
-            echo $service['servico'];
-            echo "</span>";
-            
-            
-        }
-        echo "<ul class='list-group list-group-flush m-3'>";
-        echo "</div>";
-        
         ?>
-
+        </table>
 
 
     </main>
