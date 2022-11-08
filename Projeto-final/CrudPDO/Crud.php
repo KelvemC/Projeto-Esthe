@@ -290,7 +290,7 @@ class Usuario
 
             if ($sql->rowCount() === 0) {
 
-                $sql = $this->Conectar()->prepare("INSERT INTO agendamento (horario, servico, usuario_id, estabelecimento_id) VALUES (:horario, :servico, :usuario_id, :estabelecimento_id)");
+                $sql = $this->Conectar()->prepare("INSERT INTO agendamento (horario, servicos, usuario_id, estabelecimento_id) VALUES (:horario, :servico, :usuario_id, :estabelecimento_id)");
                 $sql->bindValue(':usuario_id', $user_id);
                 $sql->bindValue(':estabelecimento_id', $id_tb);
                 $sql->bindValue(':servico', $servico);
