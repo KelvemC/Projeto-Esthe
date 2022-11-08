@@ -31,58 +31,64 @@ class Exibir{
     }
 
 
-    function exibirEstabelecimentoAgenda(){
+    function id_Estb(){
         $Array = array();
-        $sqlESTB = $this->Conectar()->prepare("SELECT estabelecimento_id FROM agendamento");
-        $sqlESTB->execute();
-        foreach($sqlESTB as $id){
-            $sql = $this->Conectar()->prepare("SELECT nome FROM estabelecimento WHERE id = :id");
-            $sql->bindValue(':id',$id['estabelecimento_id']);
-            $sql->execute();
-            $nome = $sql->fetch(PDO::FETCH_ASSOC);
-            array_push($Array, $nome['nome']);
-    }
-    return $Array;
-    }
-
-    function exibirData(){
-        $Array = array();
-        $sqlIDagn = $this->Conectar()->prepare("SELECT idagendamento FROM agendamento");
-        $sqlIDagn->execute();
-        foreach($sqlIDagn as $idAgenda){
-            $sqlData = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`, '%d/%m/%Y') AS 'data' FROM agendamento WHERE idagendamento = :id");
-            $sqlData->bindValue(':id',$idAgenda['idagendamento']);
-            $sqlData->execute();
-            $dataAgenda = $sqlData->fetch(PDO::FETCH_ASSOC);
-            array_push($Array, $dataAgenda['data']);
+        $UserID = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT estabelecimento_id FROM agendamento WHERE usuario_id = $UserID");
+        $sql->execute();
+        foreach($sql as $id){
+            array_push($Array, $id["estabelecimento_id"]);
         }
         return $Array;
     }
 
-    function exibirHorario(){
+    function nome($id){
+        $sql = $this->Conectar()->prepare("SELECT nome FROM estabelecimento WHERE id = $id");
+        $sql->execute();
+        foreach ($sql as $nome) {
+            echo $nome['nome'];
+        }
+    }
+
+    function data(){
         $Array = array();
-        $horaSql = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM `agendamento`");
-        $horaSql->execute();
-        foreach($horaSql as $hora){
-            
-            array_push($Array, $hora['data_formatada']);
-            
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`,'%d/%m/%Y') AS `data_formatada` FROM agendamento WHERE usuario_id = $id");
+        $sql->execute();
+        foreach($sql as $data){
+            array_push($Array, $data['data_formatada']);
+        }
+        return $Array;
+
+    }
+
+    function hora(){
+        $Array = array();
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT DATE_FORMAT (`horario`,'%Hh%i') AS `data_formatada` FROM agendamento WHERE usuario_id = $id");
+        $sql->execute();
+        foreach($sql as $data){
+            array_push($Array, $data['data_formatada']);
         }
         return $Array;
     }
 
-    function exibirServico(){
+    function servicos(){
         $Array = array();
-        $sqlService = $this->Conectar()->prepare("SELECT servico FROM agendamento");
-        $sqlService->execute();
-        foreach($sqlService as $service){
-            
-            array_push($Array, $service['servico']);
-            
-            
-            
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT servicos FROM agendamento WHERE usuario_id = $id");
+        $sql->execute();
+        foreach($sql as $servico){
+            array_push($Array, $servico['servicos']);
         }
         return $Array;
     }
+    /*
+    $dados_id = $idEs[$i];
+                        
+    
+    */
+
+    
 }
 ?>
