@@ -5,12 +5,11 @@ include_once '../login/conexao.php';
 require '../exibir_OO.php';
 
 $dados = new Exibir();
-$lista = $dados->exibirEstabelecimento();
-$datas = $dados->exibirData();
-$exibirESG = $dados->exibirEstabelecimentoAgenda();
-$exibirHora = $dados->exibirHorario();
-$exibirService = $dados->exibirServico();
-
+//$lista = $dados->exibirEstabelecimento();
+$idEs = $dados->id_Estb();
+$dataAgenda = $dados->data();
+$horaAgenda = $dados->hora();
+$servico = $dados->servicos();
 ob_start() #serve para limpar o buffer e não causar erro.
 ?>
 
@@ -69,9 +68,11 @@ ob_start() #serve para limpar o buffer e não causar erro.
 
             
             /* $_SESSION['nome'] = "Fulano"; */
-
-
+            
+            
+            
             if (isset($_SESSION['nome'])) {
+                
                 echo " 
                         <a class='contact-btn' href='../login/dashboard.php'>Agendar</a>
                         <div class='flex-shrink-0 dropdown'>
@@ -121,34 +122,42 @@ ob_start() #serve para limpar o buffer e não causar erro.
                 <th scope='col'>Data</th>
                 <th scope='col'>Hora</th>
                 <th scope='col'>Serviço</th>
-                
+                <th scope='col'>Pedidos</th>
             </tr>
         </thead>
         <?php
-        for($i = 0; $i<count($exibirESG); $i++){
+        
+        // -------------------------------------------------------------------
+        
+        for($i = 0; $i<count($idEs); $i++){
                     echo "<tr>";
                         echo "<td>";
-                        echo $exibirESG[$i];
-                        echo "</td>";
-                    
-                        echo "<td>";
-                        echo $datas[$i];
+                        $dados->nome($idEs[$i]);
                         echo "</td>";
 
                         echo "<td>";
-                        echo $exibirHora[$i];
+                        echo $dataAgenda[$i];
                         echo "</td>";
 
                         echo "<td>";
-                        echo $exibirService[$i];
+                        echo $horaAgenda[$i];
                         echo "</td>";
-                        
-                        
+
+                        echo "<td>";
+                        echo $servico[$i];
+                        echo "</td>";
+
+                        echo "<td>";
+                        echo "<button type='button' class='btn btn-danger'>Cancelar</button>";
+                        echo " ";
+                        echo "<button type='button' class='btn btn-success'>Editar</button>";
+                        echo "</td>";
+
                     echo "</tr>
-                
                 ";
                 
         }        
+        
 
         ?>
         </table>
