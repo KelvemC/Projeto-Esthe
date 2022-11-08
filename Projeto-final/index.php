@@ -46,7 +46,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
                                 }
                                 
                                 echo " 
-                                    <a class='contact-btn' href='../login/dashboard.php'>Agendar</a>
+                                    <a class='contact-btn' href='login/dashboard.php'>Agendar</a>
                                     <div class='flex-shrink-0 dropdown'>
                                         <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
                                             <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
