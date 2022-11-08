@@ -1,15 +1,15 @@
 <?php
 session_start();
-ob_start();#serve para limpar o buffer e não causar erro.
-include_once 'conexao.php';
-#se o nome do usuário não estiver no banco de dados, vai apresentar erro
-if((!isset($_SESSION['id'])) and (!isset($_SESSION['nome']))){
-    $_SESSION['msg'] = "Usuário ou senha inválido, necessário realizar o login";
-    header('Location:login.php');
-}
+include '../exibir_OO.php';
+ob_start(); #serve para limpar o buffer e não causar erro.
+
+$dados = new Exibir();
+$lista = $dados->exibirEstabelecimento();
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,80 +55,76 @@ if((!isset($_SESSION['id'])) and (!isset($_SESSION['nome']))){
             display: block;
             padding: 30px;
             margin: 30px;
-            
+
         }
-        .cen{
+
+        .cen {
             text-align: center;
         }
-        .butao{
+
+        .butao {
             text-align: center;
         }
+
         .btn-primary {
             color: #fff;
             background-color: #618862;
             border-color: rgb(245, 240, 240);
         }
-        div{
+
+        div {
             margin: 15px;
         }
-        label{
+
+        label {
             position: relative;
         }
     </style>
 </head>
 
 <body>
-    <h1 class="titulo01">
-        Agende Seu Serviço
-    </h1>
+   <?php
+   echo "<div class='backgroundIMG'>
+            <h4>Agende Seu Serviço</h4>
+            <h2>Faça Seu Agendamento</h3>
+       
+                <form action='../CrudPDO/Crud.php' method='POST''>
 
-    <h1 class="titulo02">
-        Faça Seu Agendamento
-    </h1>
-    <form action="../AgendamentoCliente/agendamentoConcluido.html">
-        <div class="content"> 
-            <div class="agendamento">
-                <p class="cen">Por favor, selecione o serviço:</p>
-                <div class="form-group col-md-8">
-                    <label for="inputEstado">Serviço:</label>
-                    <select id="inputEstado" class="form-control">
+                    <p>Por favor, selecione o serviço:</p>
+
+                    <div class='form-group col-md-8 m-3'>
+                        <label>Estabelecimentos:</label>";
+                        echo "<select id='inputEstab' class='form-control rounded-1' name = 'estabelecimentos'>";
+                            foreach ($lista as $estabelecimentos):
+                                echo "<option selected>";
+                                echo $estabelecimentos['nome'];
+                                echo "</option>";
+                            endforeach;
+                        echo "</select>
+                    </div>
+
+                    <div class='form-group col-md-8 m-3'>
+                        <label>Serviço:</label>
+               
+                        <select id='inputEstado' class='form-control rounded-1' name = 'servico'>
                         <option selected>Pedicuri</option>
                         <option selected>Cabelereiro</option>
                         <option selected>Barbearia</option>
                         <option selected>Massagem</option>
                         <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-8" >
-                    <label for="inputEstado">Funcionário:</label>
-                    <select id="inputEstado" class="form-control">
-                        <option selected>Larissa</option>
-                        <option selected>Carlos</option>
-                        <option selected>Maria Júlia</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-8" >
-                    <label for="inputEstado">Data</label>
-                    <input type="date" name="data" id="data">
-                    <input type="time" name="hora" id="hora">
-                </div>
-                <div class="butao">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Agendar</button>
-                </div>
-            </div>
-        </div>
-    </form>
+                        </select>
+                    </div>
 
+                    <div class='form-group col-md-8 m-3' name = 'data-hora'>
+                        <label>Data</label>
+                        <input type='date' class='rounded-1' name='data' id='data'>
+                        <input type='time' class='rounded-1' name='hora' id='hora'>
+                    </div>
+                    <input type='hidden' name='OP' value='Agendar'>
+                    <button type='submit' class='btn btn-success'>Agendar</button>
+                </form>
+        </div>";
+   ?>
 </body>
-
+        
 </html>
-
-
-
-
-<!--
-    <h1>Bem-vindo <//?php echo $_SESSION['nome'];?></h1>
-    <a href="sair.php">sair</a>
--->
