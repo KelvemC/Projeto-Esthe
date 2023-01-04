@@ -3,7 +3,6 @@ session_start();
 include './exibir_OO.php';
 $dados = new Exibir();
 $lista = $dados->exibirEstabelecimento();
-
 ob_start()#serve para limpar o buffer e não causar erro.
 ?>
 
@@ -31,7 +30,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
         <div class="center">
             <div class="menu">
                 <div class="logo-menu">
-                    <a href="/"><img src="images/logo.svg" /></a>
+                    <a href="/"><img src="./images/logoNew.svg" /></a>
                 </div>
                 <div id="menu_desktop">
                     <div class="items-menu d-flex flex-row align-items-center">
@@ -44,22 +43,40 @@ ob_start()#serve para limpar o buffer e não causar erro.
                                     echo $_SESSION['logado'];
                                     unset($_SESSION['logado']);
                                 }
-                                
-                                echo " 
-                                    <a class='contact-btn' href='login/dashboard.php'>Agendar</a>
-                                    <div class='flex-shrink-0 dropdown'>
-                                        <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
-                                            <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
-                                        </a>
-                                        <ul class='dropdown-menu text-small shadow'>
-                                            <li><a style='color: black' href='./perfilConta/perfil.php'>Perfil</a></li>
-                                            <li><a style='color: black' href='./AgendamentoCliente/agendamentos_do_cliente.php'>Agendamentos</a></li>
-                                            <li>
-                                                <hr class='dropdown-divider'>
-                                            </li>
-                                            <li><a style='color: black' href='./login/sair.php'>Sair</a></li>
-                                        </ul>
-                                    </div>";
+                                if(isset($_SESSION['contaP'])){
+                                    echo " 
+                                        <div class='flex-shrink-0 dropdown'>
+                                            <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
+                                            </a>
+                                            <ul class='dropdown-menu text-small shadow'>
+                                                <li><a style='color: black' href='./perfilConta/perfil.php'>Perfil</a></li>
+                                                <li><a style='color: black' href='./LadoEstabelecimento/index.php'>Pedidos</a></li>
+                                                <li>
+                                                    <hr class='dropdown-divider'>
+                                                </li>
+                                                <li><a style='color: black' href='./login/sair.php'>Sair</a></li>
+                                            </ul>
+                                        </div>";
+
+                                }
+                                if(isset($_SESSION['contaS'])){
+                                    echo " 
+                                        <a class='contact-btn' href='login/dashboard.php'>Agendar</a>
+                                        <div class='flex-shrink-0 dropdown'>
+                                            <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+                                                <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
+                                            </a>
+                                            <ul class='dropdown-menu text-small shadow'>
+                                                <li><a style='color: black' href='./perfilConta/perfil.php'>Perfil</a></li>
+                                                <li><a style='color: black' href='./AgendamentoCliente/agendamentos_do_cliente.php'>Agendamentos</a></li>
+                                                <li>
+                                                    <hr class='dropdown-divider'>
+                                                </li>
+                                                <li><a style='color: black' href='./login/sair.php'>Sair</a></li>
+                                            </ul>
+                                        </div>";
+                                }
                             }else{
                                 if(isset($_SESSION['msg'])){
                                     echo $_SESSION['msg'];

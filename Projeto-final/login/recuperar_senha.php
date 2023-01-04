@@ -107,7 +107,7 @@ $mail = new PHPMailer(true);
     }
     ?>
     <div class="logo-menu">
-        <a href="/"><img src="../images/logo.svg" /></a>
+        <a href="/"><img src="../images/logoNew.svg" /></a>
     </div>
     <div align="center" class="login-page">
         <div class="form">

@@ -89,6 +89,54 @@ class Exibir{
     
     */
 
+    function servicosTodosClientes(){
+        $Array = array();
+        $sql = $this->Conectar()->prepare("SELECT servicos FROM agendamento");
+        $sql->execute();
+        foreach($sql as $servico){
+            array_push($Array, $servico['servicos']);
+        }
+        return $Array;
+
+    }
+
+    function contarAg(){
+        $Array = array();
+        $sql = $this->Conectar()->prepare("SELECT COUNT(idagendamento) AS contagem FROM agendamento");
+        $sql->execute();
+        foreach($sql as $cont){
+            array_push($Array, $cont['contagem']);
+        }
+        return $Array;
+    }
+
+    function id_user(){
+        $Array = array();
+        $sql = $this->Conectar()->prepare("SELECT usuario_id FROM agendamento");
+        $sql->execute();
+        foreach($sql as $id){
+            array_push($Array, $id['usuario_id']);
+        }
+        return $Array;
+    }
+
+    function exibirNomeUser($id){
+        $sql = $this->Conectar()->prepare("SELECT nome FROM usuario WHERE id = $id");
+        $sql->execute();
+        foreach ($sql as $nome) {
+            echo $nome['nome'];
+        }
+    }
     
+
+    function servicosEspecifico($id){
+        $Array = array();
+        $sql = $this->Conectar()->prepare("SELECT servicos FROM agendamento WHERE usuario_id = $id");
+        $sql->execute();
+        foreach($sql as $nome){
+            array_push($Array, $nome['servicos']);
+        }
+        return $Array;
+    }
 }
 ?>
