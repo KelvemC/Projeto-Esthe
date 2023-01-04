@@ -17,7 +17,7 @@
 
 <body>
   <div class="logo-menu">
-    <a href="/"><img src="../images/logo.svg" /></a>
+    <a href="/"><img src="../images/logoNew.svg" /></a>
   </div>
   <div class="form-cadastro">
     <div class="form">
