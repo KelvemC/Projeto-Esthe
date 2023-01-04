@@ -57,7 +57,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
 
     <nav class="ms-5 me-5 mb-5 mt-3 d-flex flex-row align-items-center justify-content-between">
         <div>
-            <a href="../index.php"><img src="../images/logo.svg" /></a>
+            <a href="../index.php"><img src="../images/logoNew.svg" /></a>
         </div>
 
         <div class="items-menu d-flex flex-row align-items-center">
