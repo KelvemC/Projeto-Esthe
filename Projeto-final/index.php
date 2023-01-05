@@ -1,8 +1,10 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 session_start();
 include './exibir_OO.php';
 $dados = new Exibir();
-$lista = $dados->exibirEstabelecimento();
 ob_start()#serve para limpar o buffer e não causar erro.
 ?>
 
@@ -23,6 +25,28 @@ ob_start()#serve para limpar o buffer e não causar erro.
     <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="utf-8" />
+    <style type="text/css">
+        img{
+            border-radius: 20px;
+        }
+
+        img.logoNova{
+            height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+            
+        }
+
+        div#menu_desktop{
+            margin: 14px;
+        }
+        h1{
+            padding: -20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +54,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
         <div class="center">
             <div class="menu">
                 <div class="logo-menu">
-                    <a href="/"><img src="./images/logoNew.svg" /></a>
+                    <a href="/"><img class = "logoNova" src="./images/logos/NovaLogo.svg" /></a>
                 </div>
                 <div id="menu_desktop">
                     <div class="items-menu d-flex flex-row align-items-center">
@@ -110,51 +134,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
                 </div>
                 <?php
                 if(isset($_SESSION['contaS'])){ 
-                    echo "<div class='backgroundIMG'>
-    
-                        <h4>Agende Seu Serviço</h4>
-                        <h2>Faça Seu Agendamento</h3>
-                            
-                            <form action='./CrudPDO/Crud.php' method='POST''>
-    
-                                <p>Por favor, selecione o serviço:</p>
-
-                                <div class='form-group col-md-8 m-3'>
-                                <label>Estabelecimentos:</label>";
-                                
-                            echo "<select id='inputEstab' class='form-control rounded-1' name = 'estabelecimentos'>";
-                            foreach ($lista as $estabelecimentos):
-                                echo "<option selected>";
-                                echo $estabelecimentos['nome'];
-                                echo "</option>";
-                            endforeach;
-                            echo "</select>
-                            </div>
-
-                                <div class='form-group col-md-8 m-3'>
-                                    <label>Serviço:</label>
-                                    
-                                    <select id='inputEstado' class='form-control rounded-1' name = 'servico'>
-                                        <option selected>Pedicuri</option>
-                                        <option selected>Cabelereiro</option>
-                                        <option selected>Barbearia</option>
-                                        <option selected>Massagem</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-    
-                                
-    
-                                <div class='form-group col-md-8 m-3' name = 'data-hora'>
-                                    <label>Data</label>
-                                    <input type='date' class='rounded-1' name='data' id='data'>
-                                    <input type='time' class='rounded-1' name='hora' id='hora'>
-                                </div>
-                                <input type='hidden' name='OP' value='Agendar'>
-                                <button type='submit' class='btn btn-success'>Agendar</button>
-    
-                            </form>
-                    </div>";
+                    echo "<a href='/'><img class = 'mockupNovo' src='./images/macbook mockup.svg' /></a>";
                 }else if(isset($_SESSION['contaP'])){
                     echo "<img src = './images/agendamento.png' style = 'bottom: 50;'></img>";
                 }else if(!(isset($_SESSION['contaS'])) || !(isset($_SESSION['contaP']))){

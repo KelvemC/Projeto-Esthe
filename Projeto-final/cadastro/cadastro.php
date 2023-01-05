@@ -11,14 +11,32 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
-
+  
   <title>Cadastro</title>
+  <style type="text/css">
+    img.LogoNova{
+      height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+            
+    }
+
+    .form-cadastro{
+      padding: 10%;
+      
+    }
+
+  </style>
 </head>
 
 <body>
   <div class="logo-menu">
-    <a href="/"><img src="../images/logoNew.svg" /></a>
+    <a href="/"><img class = "LogoNova" src="../images/logos/NovaLogo.svg" /></a>
   </div>
+  
   <div class="form-cadastro">
     <div class="form">
       <form action="../CrudPDO/Crud.php" method="POST">
@@ -63,10 +81,8 @@
         <div class = "form-row">
           
           <input class = "input_maior" type="text" name="cep" placeholder="Insira o CEP"/>
-          
-          <label class = "form-row">Estado</label>
           <select class="form-control" id="estados" name = "estados">
-            <option>Escolha</option>
+            <option>Escolha o seu Estado</option>
             <option value="SP">SP</option>
             <option value="PE">PE</option>
             <option value="BA">BA</option>
@@ -78,7 +94,7 @@
           <br>
           <input type="hidden" name="OP" value="cadastroPRO">
           <button type="submit" class="btn btn-primary">Cadastrar</button>
-          <p class="message">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
+          <p class="message">Já tem um conta? <a href="../login/login.php">Fazer Login</a></p>
       </form>
     </div>
   </div>

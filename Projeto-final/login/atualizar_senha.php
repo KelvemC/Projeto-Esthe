@@ -17,6 +17,15 @@ include_once 'conexao.php';
         .logo-menu a {
             padding-left: 130px;
         }
+
+        .NovaLogo{
+            height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+        }
     </style>
 
 </head>
@@ -63,7 +72,7 @@ include_once 'conexao.php';
     }
     ?>
     <div class="logo-menu">
-        <a href="/"><img src="../images/logo.svg" /></a>
+        <a href="/"><img class = "NovaLogo" src="../images/logos/NovaLogo.svg" /></a>
     </div>
     <div align="center" class="login-page">
         <div class="form">

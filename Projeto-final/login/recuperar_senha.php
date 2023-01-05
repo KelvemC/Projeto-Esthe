@@ -23,9 +23,18 @@ $mail = new PHPMailer(true);
                                                     echo $key ?>">
     <title>Agência Esthe - Recuperar Senha</title>
     <style type="text/css">
-        .logo-menu a {
-            padding-left: 130px;
+        img.Logo{
+            height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+            
+            
         }
+        
+
     </style>
 </head>
 
@@ -59,7 +68,7 @@ $mail = new PHPMailer(true);
             $result_up_usuario->bindParam(':id', $row_usuario['id'], PDO::PARAM_INT);
 
             if ($result_up_usuario->execute()) {
-                $link = "http:localhost/Projeto-Esthe/Projeto-final/login/atualizar_senha.php?chave=$chave_recuperar_senha";
+                $link = "chave=$chave_recuperar_senha";
                 try {
                     //Server settings
                     //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
@@ -87,8 +96,9 @@ $mail = new PHPMailer(true);
 
                     $mail->send();
 
-                    $_SESSION['msg'] = '<script>alert("Senha atualizada com sucesso")</script>';
-                    header('Location:login.php');
+                    $_SESSION['msg'] = '<script>alert("Enviado com sucesso!")</script>';
+                    header('Location: atualizar_senha.php?' . $link);
+                    
                     exit;
                 } catch (Exception $e) {
                     echo '<script>alert("Erro: Email não enviado com sucesso. Error:{$mail->ErrorInfo}")</script>';
@@ -106,20 +116,15 @@ $mail = new PHPMailer(true);
         unset($_SESSION['msg']);
     }
     ?>
+    
     <div class="logo-menu">
-        <a href="/"><img src="../images/logoNew.svg" /></a>
+        <a href="/"><img class = "Logo" src="../images/logos/NovaLogo.svg" /></a>
     </div>
     <div align="center" class="login-page">
         <div class="form">
             <h1>Recuperar Senha</h1>
             <form action="" class="login-form" method="POST">
-                <?php
-                $usuario = "";
-                if (isset($dados['email'])) {
-                    $usuario = $dados['email'];
-                }
-                ?>
-                <input type="email" name="email" placeholder="email do usuário" value="<?php echo $usuario; ?>"><br><br>
+                <input type="email" name="email" placeholder="email do usuário"><br><br>
                 <button type="submit" name="SendRecup" value="Senha Recup">Recuperar Senha</button>
                 <p class="message">Lembrou? <a href="login.php">Clique aqui para logar</a></p>
 

@@ -21,6 +21,13 @@ ob_start() #serve para limpar o buffer e não causar erro.
         .logo-menu a {
             padding-left: 130px;
         }
+        img.NovaLogo{
+            height: 60%;
+            width: 40%;
+            position: absolute;
+            
+            margin: -10%;
+        }
     </style>
 </head>
 
@@ -81,7 +88,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
     }
     ?>
     <div class="logo-menu">
-        <a href="/"><img src="../images/logoNew.svg" /></a>
+        <a href="/"><img class = "NovaLogo" src="../images/logos/NovaLogo.svg" /></a>
     </div>
     <div align="center" class="login-page">
         <div class="form">

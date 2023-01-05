@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="./estiloContaNormal.css">
+    <style type="text/css">
+      img.LogoNova{
+        height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+            
+      }
+
+      div.form{
+        border-radius: 10px;
+      }
+
+      .form button{
+        border-radius: 2px;
+      }
+    </style>
 </head>
 <body>
   <div class="logo-menu">
-    <a href="/"><img src="../images/logoNew.svg" /></a>
+    <a href="/"><img class = "LogoNova" src="../images/logos/NovaLogo.svg" /></a>
   </div>
     <div class="login-page">
         <div class="form">
@@ -29,7 +48,7 @@
             </div>
             <button type="submit">Criar conta</button>
             <input type="hidden" name="OP" value="cadastrar"/>
-            <p class="message" style="text-align: center">Já tem um conta? <a href="../login/login.php">Sign In</a></p>
+            <p class="message" style="text-align: center">Já tem um conta? <a href="../login/login.php">Fazer Login</a></p>
           </form>
         </div>
       </div>

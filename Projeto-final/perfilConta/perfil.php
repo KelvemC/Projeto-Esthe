@@ -23,12 +23,21 @@ ob_start() #serve para limpar o buffer e não causar erro.
         .logo-menu{
             background-image: url(/Projeto-Esthe/Projeto-final/images/banner.svg);
         }
+        img.logoNova{
+            height: 60%;
+            width: 40%;
+            position: absolute;
+            left: 35.1mm;
+            bottom: 76.40%;
+            margin: -9.6%;
+            
+        }
     </style>
 </head>
 
 <body>
     <div class="logo-menu">
-        <a href="/"><img src="../images/logo.svg" /></a>
+        <a href="/"><img class = "logoNova" src="../images/logos/NovaLogo.svg" /></a>
     </div>
     <div class="container">
         <div class="profile-box">
