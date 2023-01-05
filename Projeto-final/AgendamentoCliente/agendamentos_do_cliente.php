@@ -40,15 +40,48 @@ ob_start() #serve para limpar o buffer e não causar erro.
             margin: 0;
             height: 100%;
             width: 100%;
-            background-color: #357236;
+            background-image: url(../images/banner.svg);
+            background-position: center;
+            background-size: cover;
+            min-height: 900px;
+            
         }
         table{
-  width: 100%;
-  margin-bottom : .5em;
-  table-layout: fixed;
-  text-align: center;
+            width: 100%;
+            margin-bottom : .5em;
+            table-layout: fixed;
+            text-align: center;
   
-}
+        }   
+        .LogoNova{
+            height: 61.90%;
+            width: 40%;
+            position: absolute;
+            left: 34.98mm;
+            bottom: 75.62%;
+            margin: -9.60%;
+            
+            
+        }
+
+        main.bg-light.shadow-lg.m-4.bg-body.rounded{
+            position: absolute;
+        }
+
+        .main.items-menu.d-flex.flex-row.align-items-center{
+            padding: 40px;
+        }
+        
+        .items-menu{
+            padding: 10px;
+            
+        }
+
+        .ms-5.me-5.mb-5.mt-3.d-flex.flex-row.align-items-center.justify-content-between{
+            width: 75.76%;
+            padding: 7.5px;
+            
+        }
     </style>
 
 
@@ -57,7 +90,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
 
     <nav class="ms-5 me-5 mb-5 mt-3 d-flex flex-row align-items-center justify-content-between">
         <div>
-            <a href="../index.php"><img src="../images/logoNew.svg" /></a>
+            <a href="../index.php"><img class = "LogoNova"src="../images/logos/NovaLogo.svg" /></a>
         </div>
 
         <div class="items-menu d-flex flex-row align-items-center">

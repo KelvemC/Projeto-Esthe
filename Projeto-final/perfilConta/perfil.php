@@ -27,9 +27,10 @@ ob_start() #serve para limpar o buffer e não causar erro.
             height: 60%;
             width: 40%;
             position: absolute;
-            left: 35.1mm;
+            left: 131px;
             bottom: 76.40%;
             margin: -9.6%;
+            top: 24.6px;
             
         }
     </style>
