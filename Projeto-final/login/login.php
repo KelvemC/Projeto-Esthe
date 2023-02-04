@@ -4,7 +4,7 @@ include_once 'conexao.php';
 include './loginPro.php';
 ob_start() #serve para limpar o buffer e não causar erro.
 
-?>
+    ?>
 
 
 <!DOCTYPE html>
@@ -16,22 +16,24 @@ ob_start() #serve para limpar o buffer e não causar erro.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <link rel="stylesheet" href="./style.css?key=<?php $key = uniqid(md5(rand()));
-                                                    echo $key ?>">
+    echo $key ?>">
     <style type="text/css">
         .logo-menu a {
             padding-left: 130px;
         }
-        img.NovaLogo{
+
+        img.NovaLogo {
             height: 60%;
             width: 40%;
             position: absolute;
-            
+
             margin: -10%;
         }
     </style>
 </head>
 
 <body>
+
     <?php
     #recebendo todos os campos de uma vez só como string
     $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -48,7 +50,7 @@ ob_start() #serve para limpar o buffer e não causar erro.
         $result_usuario->bindParam(':email', $dados['email']);
         #executando.
         $result_usuario->execute();
-        if(!$result_usuario->execute()){
+        if (!$result_usuario->execute()) {
             return "./loginPro.php";
         }
         #se a quantidade de usuário for diferente de 0, ele acessa
@@ -59,11 +61,6 @@ ob_start() #serve para limpar o buffer e não causar erro.
             if (password_verify($dados['senha'], $row_usuario['senha'])) {
                 $_SESSION['id'] = $row_usuario['id'];
                 $_SESSION['nome'] = $row_usuario['nome'];
-                $_SESSION['email'] = $row_usuario['email'];
-                $_SESSION['telefone'] = $row_usuario['telefone'];
-                $_SESSION['endereco'] = $row_usuario['endereco'];
-                $_SESSION['cidade'] = $row_usuario['cidade'];
-                $_SESSION['estado'] = $row_usuario['estado'];
                 $_SESSION['contaS'] = 'simples';
 
                 //Ativando o usuário após o login usando a sessão id.
@@ -87,17 +84,18 @@ ob_start() #serve para limpar o buffer e não causar erro.
         unset($_SESSION['msg']);
     }
     ?>
-    <div class="logo-menu">
-        <a href="/"><img class = "NovaLogo" src="../images/logos/NovaLogo.svg" /></a>
+    <div style="width: 100%; padding: 30px 30px 0px;">
+        <a href="/"><img src="../images/Nova.svg" width="100" style="background-color: #618862;"></a>
     </div>
     <div align="center" class="login-page">
         <div class="form">
-            <h1>Login</h1>
+            <h1>Entrar</h1>
             <form action="" class="login-form" method="POST">
                 <input type="email" name="email" placeholder="email do usuário"><br><br>
                 <input type="password" name="senha" placeholder="senha do usuário"><br><br>
-                <button type="submit" name="SendLogin" value="Logar">Logar</button>
-                <p class="message">Não está cadastrado? <a href="../criarConta/contaNormalouProfissional.html">Crie uma conta</a></p>
+                <button type="submit" name="SendLogin" value="Logar">Entrar</button>
+                <p class="message">Não está cadastrado? <a href="../criarConta/contaNormalouProfissional.html">Crie uma
+                        conta</a></p>
                 <p class="message">Esqueceu a senha? <a href="recuperar_senha.php">Clique aqui para alterar</a></p>
             </form>
         </div>

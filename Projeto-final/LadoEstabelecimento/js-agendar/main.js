@@ -197,7 +197,7 @@
         // Se não houver eventos para esta data, notifique o usuário
         if (events.length === 0) {
             var event_card = $("<div class='event-card'></div>");
-            var event_name = $("<div class='event-name'>Nenhum agendamento para " + day + " de " + month + ".</div>");
+            var event_name = $("<div class='event-name' style='color: white;'>Nenhum agendamento para " + day + " de " + month + ".</div>");
             $(event_card).css({
                 "border-left": "10px solid #FF1744"
             });
@@ -207,8 +207,8 @@
             // Passa e adiciona cada evento como um cartão ao container de eventos
             for (var i = 0; i < events.length; i++) {
                 var event_card = $("<div class='event-card'></div>");
-                var event_name = $("<div class='event-name' style='font-weight: bold; color:#000'>Serviço: " + "<span style='font-size: 16px; line-height: 1.8;font-weight: normal; color: #455AF7;'>" + events[i]["occasion"] + "</span></div>");
-                var event_count = $("<div class='event-count' style='font-weight: bold; color:#000'>Horário: " + "<span style='font-size: 16px; line-height: 1.8;font-weight: normal; color: #455AF7;'> " + events[i]["invited_count"] + " ― " + events[i]["invited_count1"] + "</span></div>");
+                var event_name = $("<div class='event-name' style='font-weight: bold; color:#000'>Serviço: " + "<span style='font-size: 16px; line-height: 1.8;font-weight: normal; color: white;'>" + events[i]["occasion"] + "</span></div>");
+                var event_count = $("<div class='event-count' style='font-weight: bold; color:#000'>Horário: " + "<span style='font-size: 16px; line-height: 1.8;font-weight: normal; color: white;'> " + events[i]["invited_count"] + " ― " + events[i]["invited_count1"] + "</span></div>");
                 if (events[i]["cancelled"] === true) {
                     $(event_card).css({
                         "border-left": "10px solid #FF1744"

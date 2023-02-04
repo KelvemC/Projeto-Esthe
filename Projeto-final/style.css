@@ -23,10 +23,6 @@ section.main{
     padding:20px 0 80px 0;
 }
 
-.mockup-foto{
-    position: relative;
-}
-
 .backgroundIMG {
     width: 100%;
     height: 100%;
@@ -62,7 +58,14 @@ section.main{
     
 }
 
-.menu{display: flex; width: 100%;}
+.menu{
+    display: flex;
+    width: 100%;
+    background: #618862;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 30px 0px;
+}
 
 .logo-menu{width: 50%;}
 
@@ -92,7 +95,7 @@ section.main{
     border:0 ;
 }
 
-.mockup{display:block; width: 100%; color: white; text-align: center; padding-top: 100px;
+.mockup{display:block; width: 100%; color: white; text-align: center; padding: 105px 50px 0px;
 
 }
 

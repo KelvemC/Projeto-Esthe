@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="PT">
+<?php
+session_start();
+require "../exibir_OO.php";
+include_once '../login/conexao.php';
 
+
+$dados = new Exibir();
+//$lista = $dados->exibirEstabelecimento();
+$contar = $dados->contarAg();
+$id = $dados->id_user();
+ob_start() #serve para limpar o buffer e não causar erro
+?>
 <head>
     <title>Configurações</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css-agendar/style.css">
+    <link rel="stylesheet" href="./css-agendar/style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
 </head>
 
 <body>
-    <div class="app-container">
+    <div class="app-container" style="align-items: center;">
         <div class="app-header">
             <div class="app-header-left">
-                <img src="./imagens/caupe-logo.png" height="70" width="70" style="border-radius: 50%; padding: 5px;"/>
-                <p class="app-name">Caupé Agendamentos</p>
+            <img src="../images/Nova.svg" width="100" style="background-color: #618862;">
+              <!--<p class="app-name">Caupé Agendamentos</p>-->
             </div>
             <div class="app-header-right">
-                <button class="mode-switch" title="Switch Theme">
-                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" width="16" height="16" viewBox="0 0 24 24">
-                        <defs></defs>
-                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-                </button>
-                <a href="index.html" class="app-sidebar-link">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-plus">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                        <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg>
-                </a>
-                <a href="dashboard.html" class="app-sidebar-link active">
-                    <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-                        <defs></defs>
-                        <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"></path>
-                      </svg>
-                </a>
-                <button class="profile-btn">
-                    <img src="./imagens/user.png" />
-                    <span>Usuário</span>
-                </button>
+              <button class="profile-btn">
+                <img src="./imagens/user.png">
+                <span><?php 
+                    echo $_SESSION['nome'];
+                ?></span>
+              </button>
             </div>
-        </div>
+          </div>
+          <div class="app-header-center">
+            <a href="index.php" class="app-but-left">Home</a>
+            <a href="dashboard.html" class="app-but-right active">Agendamentos</a>
+          </div>
         <div class="app-content3">
-            <div class="projects-section">
+            <div class="projects-sectionA">
                 <div class="projects-section-header" style="justify-content: center;">
                     <p>Agendamento de serviços</p>
                     <h1 id="currentDate"></h1>
@@ -62,7 +58,7 @@
                             <div class="col-md-12">
                                 <div class="content w-100">
                                     <div class="calendar-container">
-                                        <div class="calendar">
+                                        <div class="calendar2">
                                             <div class="year-header">
                                                 <span class="left-button fa fa-chevron-left" id="prev"> </span>
                                                 <span class="year" id="label"></span>
@@ -108,11 +104,11 @@
                                     </div>
                                     <div class="dialog" id="dialog">
                                         <!--<h2 class="dialog-header"> Agendamento de serviços </h2>-->
-                                        <form class="form" id="form">
+                                        <form class="form" id="form" action="../CrudPDO/Crud.php" method="post">
                                             <div class="form-container" align="center">
                                                 <label class="form-label" id="valueFromMyButton" for="name">Tipo de serviço</label>
                                                 <div class="row-select">
-                                                    <select id="name" class="centralizar">
+                                                    <select id="name" class="centralizar" name="servico">
                                                         <option value="-- --" disabled="disabled" selected>-- --</option>
                                                         <option value="Barba">Barba</option>
                                                         <option value="Corte de Cabelo">Corte de Cabelo</option>
@@ -128,7 +124,7 @@
                                                 <label class="form-label" id="valueFromMyButton" for="count">Horario do
                                                     agendamento</label>
                                                 <div class="row-select">De:&nbsp;
-                                                    <select id="count" class="centralizar">
+                                                    <select id="count" class="centralizar" name="inicio">
                                                         <option value="-- --" disabled="disabled" selected>--:--</option>
                                                         <option value="00:00">00:00</option>
                                                         <option value="01:00">01:00</option>
@@ -155,7 +151,7 @@
                                                         <option value="22:00">22:00</option>
                                                         <option value="23:00">23:00</option>
                                                     </select>&nbsp;Até:&nbsp;
-                                                    <select id="count1" class="centralizar">
+                                                    <select id="count1" class="centralizar" name="fim">
                                                         <option value="-- --" disabled="disabled" selected>--:--</option>
                                                         <option value="00:00">00:00</option>
                                                         <option value="01:00">01:00</option>
@@ -185,7 +181,12 @@
                                                 </div>
                                                 <!--<input class="input" type="time" id="count" min="0" max="1000000" maxlength="7">-->
                                                 <input type="button" value="Cancelar" class="button" id="cancel-button">
-                                                <input type="button" value="OK" class="button button-white" id="ok-button">
+                                                <input type="hidden" name="OP" value="AGservico">
+                                                <button type="submit" class="button button-white" id="ok-button">Enviar</button>
+                                                <!--
+
+                                                
+                                                -->
                                             </div>
                                         </form>
                                     </div>

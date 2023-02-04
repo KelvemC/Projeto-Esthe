@@ -102,7 +102,8 @@ class Exibir{
 
     function contarAg(){
         $Array = array();
-        $sql = $this->Conectar()->prepare("SELECT COUNT(idagendamento) AS contagem FROM agendamento");
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT COUNT(idagendamento) AS contagem FROM agendamento where estabelecimento_id = $id");
         $sql->execute();
         foreach($sql as $cont){
             array_push($Array, $cont['contagem']);
@@ -112,7 +113,8 @@ class Exibir{
 
     function id_user(){
         $Array = array();
-        $sql = $this->Conectar()->prepare("SELECT usuario_id FROM agendamento");
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT usuario_id FROM agendamento where estabelecimento_id = $id");
         $sql->execute();
         foreach($sql as $id){
             array_push($Array, $id['usuario_id']);
@@ -129,14 +131,128 @@ class Exibir{
     }
     
 
-    function servicosEspecifico($id){
+    function servicosEspecifico(){
         $Array = array();
-        $sql = $this->Conectar()->prepare("SELECT servicos FROM agendamento WHERE usuario_id = $id");
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT servicos FROM agendamento WHERE estabelecimento_id = $id");
         $sql->execute();
         foreach($sql as $nome){
             array_push($Array, $nome['servicos']);
         }
         return $Array;
+    }
+
+    function exibirHorasESP(){
+        $Array = array();
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT CONCAT(HOUR(horario), ':', MINUTE(horario)) as horas FROM agendamento WHERE estabelecimento_id = $id");
+        $sql->execute();
+        foreach($sql as $horas){
+            array_push($Array, $horas['horas']);
+        }
+        return $Array;
+    }
+
+    function exibirDataESP(){
+        $Array = array();
+        $id = $_SESSION['id'];
+        $sql = $this->Conectar()->prepare("SELECT DATE_FORMAT(horario, '%d/%m/%Y') AS data_formatada FROM agendamento WHERE estabelecimento_id = $id");
+        $sql->execute();
+        foreach($sql as $datas){
+            array_push($Array, $datas['data_formatada']);
+        }
+        return $Array;
+    }
+
+    function exibirTelefone(){
+        $Array = array();
+        $id = $_SESSION['id'];
+
+        if(isset($_SESSION['contaS'])){
+            
+            $sql = $this->Conectar()->prepare("SELECT telefone as tel FROM usuario WHERE id = $id");
+            $sql->execute();
+            foreach($sql as $telefones){
+                array_push($Array, $telefones['tel']);
+            }
+
+            return $Array;
+        }
+        else if(isset($_SESSION['contaP'])){
+
+            $sql = $this->Conectar()->prepare("SELECT telefone as tel FROM estabelecimento WHERE id = $id");
+            $sql->execute();
+            foreach($sql as $telefones){
+                array_push($Array, $telefones['tel']);
+            }
+
+            return $Array;
+
+        }
+    }
+
+    function exibirLocal(){
+        $Array = array();
+        $id = $_SESSION['id'];
+
+        if(isset($_SESSION['contaS'])){
+            $sql = $this->Conectar()->prepare("SELECT CONCAT(endereco, ', ', cidade, ', ', estado) AS nome_unificado
+            FROM usuario WHERE id = $id");
+            $sql->execute();
+            foreach($sql as $local){
+                array_push($Array, $local['nome_unificado']);
+            }
+            return $Array;
+
+        }else if(isset($_SESSION['contaP'])){
+            $sql = $this->Conectar()->prepare("SELECT CONCAT(rua, ' n° ', numero, ', ', bairro, ', ', cidade, ', ', estado) AS nome_unificado
+            FROM estabelecimento WHERE id = $id");
+            $sql->execute();
+            foreach($sql as $local){
+                array_push($Array, $local['nome_unificado']);
+            }
+            return $Array;
+        }
+    }
+
+    function editarPerfil(){
+        $Array = array();
+        $id = $_SESSION['id'];
+
+        if(isset($_SESSION['contaS'])){
+            $sql = $this->Conectar()->prepare("SELECT email, endereco, telefone FROM usuario WHERE id = $id;");
+            $sql->execute();
+            foreach($sql as $info){
+                array_push($Array, $info['email']);
+                array_push($Array, $info['endereco']);
+                array_push($Array, $info['telefone']);
+            }
+            return $Array;
+
+        }else if(isset($_SESSION['contaP'])){
+            $sql = $this->Conectar()->prepare("SELECT email, rua, numero, bairro, telefone FROM estabelecimento WHERE id = $id;");
+            $sql->execute();
+            foreach($sql as $info){
+                array_push($Array, $info['email']);
+                array_push($Array, $info['rua']);
+                array_push($Array, $info['telefone']);
+            }
+            return $Array;
+        }
+    }
+
+    function pegaInfoPro(){
+        $Array = array();
+        $id = $_SESSION['id'];
+        if(isset($_SESSION['contaP'])){
+            $sql = $this->Conectar()->prepare("SELECT numero as num_casa, bairro FROM estabelecimento WHERE id = $id;");
+            $sql->execute();
+            foreach($sql as $dados){
+                array_push($Array, $dados['num_casa']);
+                array_push($Array, $dados['bairro']);
+            }
+            return $Array;
+        }
     }
 }
 ?>

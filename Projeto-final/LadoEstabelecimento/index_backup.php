@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="PT">
 <?php
@@ -18,15 +17,15 @@ ob_start() #serve para limpar o buffer e não causar erro
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="./css/style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
   <div class="app-container">
     <div class="app-header">
       <div class="app-header-left">
-      <img src="../images/Nova.svg" width="100" style="background-color: #618862;">
-        <!--<p class="app-name">Caupé Agendamentos</p>-->
+        <img src="./imagens/caupe-logo.png" height="70" width="70" style="border-radius: 50%; padding: 5px;"/>
+        <p class="app-name">Caupé Agendamentos</p>
         <div class="search-wrapper">
           <input class="search-input" type="text" placeholder="Buscar">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
@@ -39,15 +38,34 @@ ob_start() #serve para limpar o buffer e não causar erro
         </div>
       </div>
       <div class="app-header-right">
-        <div class="mode-switch">
-        </div>
+        <button class="mode-switch" title="Switch Theme">
+          <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" width="16" height="16" viewBox="0 0 24 24">
+            <defs></defs>
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+
+        <a href="index.html" class="app-sidebar-link active">
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-plus">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+        </a>
+
+        <a href="dashboard.html" class="app-sidebar-link">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+            <defs></defs>
+            <path d="M21.21 15.89A10 10 0 118 2.83M22 12A10 10 0 0012 2v10z"></path>
+          </svg>
+        </a>
+
         <button class="profile-btn">
           <img src="./imagens/user.png" />
-          <span><?php 
-            echo $_SESSION['nome'];
-          ?></span>
+          <span>Usuário</span>
         </button>
-        
       </div>
 
       <button class="messages-btn">
@@ -62,14 +80,6 @@ ob_start() #serve para limpar o buffer e não causar erro
       </button>
 
     </div>
-
-
-    <div class="app-header-center">
-      <a href="index.php" class="app-but-left active">Home</a>
-      <a href="dashboard.php" class="app-but-right">Agendamentos</a>
-    </div>
-
-
     <div class="app-content">
       <div class="projects-section">
         <div class="projects-section-header">
@@ -79,16 +89,16 @@ ob_start() #serve para limpar o buffer e não causar erro
         <div class="projects-section-line">
           <div class="projects-status">
             <div class="item-status">
-              <span class="status-number" style="color: #df3670;"><?php echo $contar[0]?></span>
+              <span class="status-number" style="color: #df3670;">5</span>
               <span class="status-type" style="color: #df3670;">Pendentes</span>
             </div>
             <div class="item-status">
-              <span class="status-number" style="color: #34c471;">0</span>
+              <span class="status-number" style="color: #34c471;">3</span>
               <span class="status-type" style="color: #34c471;">Concluídos</span>
             </div>
             <div class="item-status">
-              <span class="status-number" style="color: #4067f9;"><?php echo $contar[0]?></span>
-              <span class=" status-type" style="color: #4067f9;">Total de agendamentos</span>
+              <span class="status-number" style="color: #4067f9;"">8</span>
+              <span class=" status-type" style="color: #4067f9;"">Total de agendamentos</span>
             </div>
           </div>
           <div class=" view-actions">
@@ -139,17 +149,16 @@ ob_start() #serve para limpar o buffer e não causar erro
                       </div>
                     </div>
                     <div class='project-box-content-header'>
-                      <p class='box-content-header'>",$dados->servicosEspecifico()[$i] ,"</p>
+                      <p class='box-content-header'>",$dados->servicosEspecifico($id[$i])[$i] ,"</p>
                       <p class='box-content-subheader'>Pendente</p>
                     </div>
                     <div class='box-progress-wrapper'>
-                      <p class='box-progress-header'>Cliente:<span class='box-content-subheader'>&nbsp",$dados->exibirNomeUser($dados->id_user()[$i]),"</span>
+                      <p class='box-progress-header'>Cliente:<span class='box-content-subheader'>&nbsp",$dados->exibirNomeUser($id[$i]),"</span>
                       </p>
                     </div>
                     <div class='project-box-footer'>
                       <div class='days-left' style='color: #df3670;'>
-                        Hora do atendimento:",$dados->exibirHorasESP()[$i],"
-                        <br>Data:",$dados->exibirDataESP()[$i],"
+                        Horário do atendimento: XX:XX
                       </div>
                     </div>
                   </div>

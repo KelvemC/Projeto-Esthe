@@ -10,78 +10,78 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
-  
+  <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand()));
+  echo $key ?>">
+
   <title>Cadastro</title>
   <style type="text/css">
-    img.LogoNova{
+    img.LogoNova {
       height: 60%;
-            width: 40%;
-            position: absolute;
-            left: 35.1mm;
-            bottom: 76.40%;
-            margin: -9.6%;
-            
+      width: 40%;
+      position: absolute;
+      left: 35.1mm;
+      bottom: 76.40%;
+      margin: -9.6%;
+
     }
 
-    .form-cadastro{
-      padding: 10%;
-      
-    }
+    .form-cadastro {
+      padding: 0 10%;
 
+    }
   </style>
 </head>
 
 <body>
-  <div class="logo-menu">
-    <a href="/"><img class = "LogoNova" src="../images/logos/NovaLogo.svg" /></a>
+  <div style="width: 100%; padding: 30px 30px 0px;">
+    <a href="/"><img src="../images/Nova.svg" width="100" style="background-color: #618862;"></a>
   </div>
-  
+
   <div class="form-cadastro">
     <div class="form">
       <form action="../CrudPDO/Crud.php" method="POST">
         <h1>Cadastro Estabelecimento</h1>
-        <br/>
-        <div class = "form-row">
-         
-          <input class = "input_maior" type="text" name="nome" placeholder="Insira o nome do estabelecimento"/>
-          
-          <input class = "input_maior"type="email" name="email" placeholder="Insira o seu email"/>
-        </div>
-        
-        <div class = "form-row">  
-          
-          <input class = "input_maior"type="password" name="senha" placeholder="Insira sua senha"/>
-          
-          <input class = "input_maior"type="text" name="telefone" placeholder="Insira o número de telefone"/>
-        </div> 
-        
-        <div class = "form-row">
-          
-          <input class = "input_maior"type="text" name="celular" placeholder="Insira o número do celular"/>
-          
-          <input class = "input_maior" type="text" name="servico" placeholder="Insira o nome do serviço"/>
+        <br />
+        <div class="form-row">
+
+          <input class="input_maior" type="text" name="nome" placeholder="Insira o nome do estabelecimento" />
+
+          <input class="input_maior" type="email" name="email" placeholder="Insira o seu email" />
         </div>
 
-        <div class = "form-row">
-          
-          <input class = "input_maior" type="text" name="rua" placeholder="Insira o nome da rua"/>
-          
-         
-          <input class = "input_maior" type="text" name="bairro" placeholder="Insira o nome do bairro"/>
-        </div>
-        
-        <div class = "form-row">
-          
-          <input class = "input_maior" type="text" name="numero" placeholder="Insira o número"/>
-          
-          <input class = "input_maior" type="text" name="cidade" placeholder="Insira o nome da cidade"/>
+        <div class="form-row">
+
+          <input class="input_maior" type="password" name="senha" placeholder="Insira sua senha" />
+
+          <input class="input_maior" type="text" name="telefone" placeholder="Insira o número de telefone" />
         </div>
 
-        <div class = "form-row">
-          
-          <input class = "input_maior" type="text" name="cep" placeholder="Insira o CEP"/>
-          <select class="form-control" id="estados" name = "estados">
+        <div class="form-row">
+
+          <input class="input_maior" type="text" name="celular" placeholder="Insira o número do celular" />
+
+          <input class="input_maior" type="text" name="servico" placeholder="Insira o nome do serviço" />
+        </div>
+
+        <div class="form-row">
+
+          <input class="input_maior" type="text" name="rua" placeholder="Insira o nome da rua" />
+
+
+          <input class="input_maior" type="text" name="bairro" placeholder="Insira o nome do bairro" />
+        </div>
+
+        <div class="form-row">
+
+          <input class="input_maior" type="text" name="numero" placeholder="Insira o número" />
+
+          <input class="input_maior" type="text" name="cidade" placeholder="Insira o nome da cidade" />
+        </div>
+
+        <div class="form-row" style="display: block;">
+
+          <input class="input_maior" type="text" name="cep" placeholder="Insira o CEP" />
+          <select class="form-control" id="estados" name="estados" style="width: auto; margin: auto;">
             <option>Escolha o seu Estado</option>
             <option value="SP">SP</option>
             <option value="PE">PE</option>
@@ -89,12 +89,12 @@
             <option value="SC">SC</option>
             <option value="CE">CE</option>
             <option value="PR">PR</option>
-          </select>  
+          </select>
         </div>
-          <br>
-          <input type="hidden" name="OP" value="cadastroPRO">
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
-          <p class="message">Já tem um conta? <a href="../login/login.php">Fazer Login</a></p>
+        <br>
+        <input type="hidden" name="OP" value="cadastroPRO">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <p class="message">Já tem um conta? <a href="../login/login.php">Fazer Login</a></p>
       </form>
     </div>
   </div>

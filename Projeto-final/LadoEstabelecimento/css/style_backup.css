@@ -44,6 +44,7 @@
 }
  html, body {
      width: 100%;
+     height: 100vh;
      margin: 0;
 }
  body {
@@ -53,11 +54,7 @@
      overflow: auto;
      display: flex;
      justify-content: center;
-     background-image: url(/Projeto-Esthe/Projeto-final/images/banner.svg);
-     background-size: cover;
-     background-position: center;
-     background-blend-mode: darken;
-     min-height: 110vh;
+     background-color: var(--app-container);
 }
  button, a {
      cursor: pointer;
@@ -67,6 +64,7 @@
      display: flex;
      flex-direction: column;
      height: 100%;
+     background-color: var(--app-container);
      transition: 0.2s;
      max-width: 1800px;
 }
@@ -75,7 +73,7 @@
 }
  .app-content {
      display: flex;
-     
+     height: 100%;
     /*overflow: hidden;
     */
      padding: 16px 24px 24px 24px;
@@ -89,104 +87,23 @@
 }
 .app-content3 {
     display: flex;
-    
+    height: 100%;
    /*overflow: hidden;
    */
-    padding: 24px 30px 24px 30px;
-    /*background: var(--app-container);*/
-    width: 60%;
+    padding: 16px 24px 24px 24px;
+    background: var(--app-container);
 }
  .app-header {
      display: flex;
      justify-content: space-between;
      align-items: center;
      width: 100%;
-     padding: 30px 30px 0px 30px;
+     padding: 16px 24px;
      position: relative;
 }
  .app-header-left, .app-header-right {
      display: flex;
      align-items: center;
-}
-.app-header-center {
-    display: flex;
-
-    justify-content: center;
-}
-.projects-sectionA {
-    flex: 2;
-    background-color: white;
-    border-radius: 32px;
-    padding: 32px 32px 32px 32px;
-    overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 8px 60px -10px rgb(13 28 39 / 60%);
-}
-.app-but-left {
-    display: flex;
-    overflow: hidden;
-    margin: 10px;
-    padding: 12px 12px;
-    cursor: pointer;
-    user-select: none;
-    transition: all 150ms linear;
-    text-align: center;
-    white-space: nowrap;
-    text-decoration: none !important;
-    text-transform: none;
-    text-transform: capitalize;
-    border: 0 none;
-    border-radius: var(--borderRadius);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.3;
-    appearance: none;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 160px;
-    color: var(--main-color);
-    box-shadow: 2px 5px 10px var(--color-smoke);
-    background-color: var(--projects-section);
-    border-radius: 15px;
-    box-shadow: 0 0px 6px 0 rgb(136 148 171 / 50%), 0 24px 20px -24px rgb(71 82 107 / 10%);
-}
-.app-but-right {
-    display: flex;
-    overflow: hidden;
-    margin: 10px;
-    padding: 12px 12px;
-    cursor: pointer;
-    user-select: none;
-    transition: all 150ms linear;
-    text-align: center;
-    white-space: nowrap;
-    text-decoration: none !important;
-    text-transform: none;
-    text-transform: capitalize;
-    border: 0 none;
-    border-radius: var(--borderRadius);
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 1.3;
-    appearance: none;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 160px;
-    color: var(--main-color);
-    box-shadow: 2px 5px 10px var(--color-smoke);
-    background-color: var(--projects-section);
-    border-radius: 15px;
-    box-shadow: 0 0px 6px 0 rgb(136 148 171 / 50%), 0 24px 20px -24px rgb(71 82 107 / 10%);
-}
-.app-but-right.active {
-    background-color: var(--link-color-active-bg);
-    color: var(--link-color-active);
-}
-.app-but-left.active {
-    background-color: var(--main-color);
-    color: var(--app-container);
 }
  .app-header-left {
      flex-grow: 1;
@@ -226,13 +143,13 @@
      margin: 0 32px;
 }
  .mode-switch {
-     /*background-color: transparent;
+     background-color: transparent;
      border: none;
      padding: 0;
      color: var(--main-color);
      display: flex;
      justify-content: center;
-     align-items: center;*/
+     align-items: center;
 }
  .search-wrapper {
      border-radius: 20px;
@@ -247,7 +164,6 @@
      color: var(--light-font);
      box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2), 0 24px 20px -24px rgba(71, 82, 107, 0.1);
      overflow: hidden;
-     margin: auto;
 }
  .dark .search-wrapper {
      box-shadow: none;
@@ -294,8 +210,8 @@
      background-color: transparent;
      display: flex;
      align-items: center;
-     /*padding-left: 12px;
-     border-left: 2px solid #ddd;*/
+     padding-left: 12px;
+     border-left: 2px solid #ddd;
 }
  .profile-btn img {
      width: 32px;
@@ -306,8 +222,7 @@
      margin-right: 4px;
 }
  .profile-btn span {
-     /*color: var(--main-color);*/
-     color: white;
+     color: var(--main-color);
      font-size: 16px;
      line-height: 24px;
      font-weight: 700;
@@ -358,7 +273,6 @@
      height: 100%;
      display: flex;
      flex-direction: column;
-     box-shadow: 0px 8px 60px -10px rgb(13 28 39 / 60%);
 }
  .projects-section2 {
      background-color: var(--projects-section);
@@ -466,7 +380,6 @@
     */
      overflow: auto;
      transition: all 300ms cubic-bezier(0.19, 1, 0.56, 1);
-     box-shadow: 0px 8px 60px -10px rgb(13 28 39 / 60%);
 }
  .messages-section .messages-close {
      position: absolute;
@@ -813,8 +726,8 @@
     }
 }
  .add-btn, .notification-btn, .mode-switch {
-     width: 0px;
-     height: 0px;
+     width: 25px;
+     height: 25px;
 }
  @media screen and (max-width: 880px) {
      .messages-section {
@@ -832,9 +745,6 @@
      .messages-btn {
          display: flex;
     }
-    .app-content3 {
-        width: 100%;
-    }
 }
  @media screen and (max-width: 720px) {
      .app-name, .profile-btn span {
@@ -847,21 +757,10 @@
      .app-header-right button {
          margin-left: 4px;
     }
-    .app-content3 {
-        width: 100%;
-    }
-}
-@media screen and (max-width: 1300px) {
-   .app-content3 {
-       width: 90%;
-   }
 }
  @media screen and (max-width: 520px) {
      .projects-section {
          overflow: auto;
-    }
-    .app-content3 {
-        width: 100%;
     }
      .project-boxes {
          overflow-y: visible;
@@ -951,7 +850,8 @@
      box-sizing: border-box;
 }
  body .calendar{
-    padding: 0;
+    /*padding: 0;
+    */
      margin: 0;
      box-sizing: border-box;
      font-family: "Open Sans", sans-serif;
@@ -984,7 +884,7 @@
 }
  .btn:hover {
      color: #FFF;
-     background: #357236;
+     background: #455AF7;
 }
  .btn-small {
      min-width: 50px;
@@ -1015,7 +915,7 @@
      content: '';
      width: 40px;
      height: 40px;
-     background: #357236;
+     background: #455AF7;
      border-radius: 50%;
      z-index: -1;
 }
@@ -1053,7 +953,7 @@
      width: 100%;
     /*padding: 10px;
     */
-     padding: 0px 32px 0 32px;
+     padding: 32px 32px 0 32px;
 }
  #currentDate{
      text-align:center;
@@ -1101,7 +1001,6 @@
      padding: 10px;
      user-select: none;
 }
-
  .headers {
      display: flex;
      justify-content: space-between;
@@ -1122,7 +1021,7 @@
      font-size: 1em;
      margin: 0 0 0 5px;
      background: #ffffff;
-     color: #357236;
+     color: #455af7;
      border: none;
      cursor: pointer;
      outline: 0;
@@ -1161,48 +1060,4 @@
 
 ::-webkit-scrollbar {
     width: 0px;
-}
-
-body .calendar2{
-    padding: 0;
-     margin: 0;
-     box-sizing: border-box;
-     font-family: "Open Sans", sans-serif;
-     font-size: 14px;
-     color: #000000;
-     -webkit-font-smoothing: antialiased;
-}
-.container .calendar2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-   /* width: 100%;
-    min-height: 100vh;
-    background: #ecf1f8;
-   */
-}
-.calendar2-assets {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-   /*padding: 10px;
-   */
-    padding: 0px 32px 0 32px;
-}
-
-.calendar2 {
-    /*height: 370px;
-     width: 324px;
-    */
-     height: 100%;
-     width: 100%;
-    /*border-radius: 32px;
-    */
-     background: white;
-     padding: 10px;
-     user-select: none;
 }

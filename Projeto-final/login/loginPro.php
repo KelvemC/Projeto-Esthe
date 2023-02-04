@@ -30,16 +30,6 @@ ob_start() #serve para limpar o buffer e não causar erro.
                 //nome, email, senha, telefone, celular, servico, rua, bairro, numero, cidade, cep, estado
                 $_SESSION['id'] = $row_usuario['id'];
                 $_SESSION['nome'] = $row_usuario['nome'];
-                $_SESSION['email'] = $row_usuario['email'];
-                $_SESSION['telefone'] = $row_usuario['telefone'];
-                $_SESSION['celular'] = $row_usuario['celular'];
-                $_SESSION['servico'] = $row_usuario['servico'];
-                $_SESSION['rua'] = $row_usuario['rua'];
-                $_SESSION['bairro'] = $row_usuario['bairro'];
-                $_SESSION['numero'] = $row_usuario['numero'];
-                $_SESSION['cidade'] = $row_usuario['cidade'];
-                $_SESSION['cep'] = $row_usuario['cep'];
-                $_SESSION['estado'] = $row_usuario['estado'];
                 $_SESSION['contaP'] = "profissional";
                 
 

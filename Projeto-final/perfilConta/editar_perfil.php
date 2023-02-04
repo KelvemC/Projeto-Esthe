@@ -1,85 +1,111 @@
 <?php
 session_start();
-include_once '../login/conexao.php';
-ob_start() #serve para limpar o buffer e não causar erro.
+include_once "../login/conexao.php";
+require "../exibir_OO.php";
+$dados = new Exibir();
+ob_start();
+#serve para limpar o buffer e não causar erro.
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Editar Perfil</title>
-    <style type="text/css">
-        body {
-            background-image: url(../images/banner.svg);
-            background-position: center;
-            background-size: cover;
-            min-height: 700px;
-            padding: 20px 0 80px 0;
-
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Editar perfil</title>
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./css/style_editar_perfil.css">
 </head>
 
 <body>
+  <div style="width: 100%; padding: 30px 30px 0px;">
+    <a href="/"><img src="../images/Nova.svg" width="100" style="background-color: #618862;"></a>
+  </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 style="text-align: center">Editar Perfil</h1>
-                <form action="../CrudPDO/Crud.php" method="POST">
-                    <div class="form-group">
-                        <label for="nome">Nome: </label>
-                        <input type="text" name="nome" class="form-control" placeholder="Digite seu nome" value="<?= $_SESSION['nome']; ?>" require>
-                    </div>
+  <div class="wrapper">
+    <div class="profile-card js-profile-card">
 
-                    <div class="form-group">
-                        <label for="email">Email: </label>
-                        <input type="email" name="email" class="form-control" placeholder="exemplo: fulano@gmail.com" value="<?= $_SESSION['email'] ?>" require>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="endereço">Endereço: </label>
-                        <input type="text" name="endereco" class="form-control" placeholder="Seu endereço e n°" value="<?= $_SESSION['endereco'] ?>" require>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefone">Telefone </label>
-                        <input type="text" name="telefone" class="form-control" placeholder="Seu endereço e n°" value="<?= $_SESSION['telefone'] ?>" require>
-                    </div>
-                    <br />
-
-                    <div class="form-group">
-                        <input type="hidden" name="id" value="<?= $_SESSION['id']; ?>">
-                    </div>
-
-                    <div style="display: inline-block;" class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Atualizar">
-                        <input type="hidden" name="OP" value="editarCadastro">
-                    </div>
-                    <a class="btn btn-primary" href="../index.php">voltar para início</a>
-                </form>
-            </div>
+      <div class="profile-card__cnt js-profile-cnt">
+        <div class="profile-card__name" style="text-transform: uppercase;">
+          <h1>Editar Perfil</h1>
         </div>
+
+        <div class="profile-card__txt">
+
+          <form action="../CrudPDO/Crud.php" method="POST">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <br>
+              <input type="text" name="nome" class="form-control" placeholder="Exemplo: Fulano da Silva"
+                value="<?= $_SESSION['nome']; ?>" require>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <br>
+              <input type="email" name="email" class="form-control" placeholder="Exemplo: fulano@gmail.com"
+                value="<?= $dados->editarPerfil()[0]; ?>" require>
+            </div>
+
+            <div class="form-group">
+              <?php
+                if(isset($_SESSION['contaS'])){
+                  echo "<label for='endereço'>Endereço:</label>";
+                }else if (isset($_SESSION['contaP'])){
+                  echo "<label for='endereço'>Rua:</label>";
+                }
+              ?>
+              
+              <br>
+              <input type="text" name="endereco" class="form-control" placeholder="Exemplo: Rua 01, N° 01"
+                value="<?= $dados->editarPerfil()[1]; ?>" require>
+            </div>
+            <?php
+            if(isset($_SESSION['contaP'])){
+                echo "<div class='form-group'>
+                        <label for='numero'>Numero:</label>
+                        <br>
+                        <input type='text' name='numero' class='form-control' placeholder='Exemplo: Rua 01, N° 01'
+                        value=".$dados->pegaInfoPro()[0]." require>
+                    </div>";
+
+                
+                echo "<div class='form-group'>
+                        <label for='bairro'>Bairro:</label>
+                        <br>
+                        <input type='text' name='bairro' class='form-control' placeholder='Exemplo: Rua 01, N° 01'
+                        value=".$dados->pegaInfoPro()[1]." require>
+                      </div>";
+
+            } 
+            ?>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <br>
+              <input type="text" name="telefone" class="form-control" placeholder="Exemplo: (00) 91234-1234"
+                value="<?= $dados->editarPerfil()[2] ?>" require>
+            </div>
+            <br />
+
+            <div class="form-group">
+              <input type="hidden" name="id" value="<?= $_SESSION['id']; ?>">
+            </div>
+            <div class="profile-card-ctr">
+              <a class="profile-card__button button--blue" href="../index.php">Voltar ao início</a>
+              <div class="form-group">
+                <input type="submit" class="profile-card__button button--orange" value="Atualizar dados">
+                <input type="hidden" name="OP" value="editarCadastro">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="./js/script.js"></script>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>

@@ -15,5 +15,6 @@ if(isset($_SESSION['contaS'])){
 else if(isset($_SESSION['contaP'])){
     unset($_SESSION['contaP']);
 }
+session_destroy();
 $_SESSION['msg'] = '<script>alert("Deslogado com sucesso!");</script>';
 echo "<script>window.location='./login.php';</script>";

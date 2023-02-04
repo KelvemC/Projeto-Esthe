@@ -123,7 +123,6 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #0056b3;
   text-decoration: underline;
 }
 a:not([href]):not([tabindex]) {
@@ -469,7 +468,7 @@ pre code {
   width: 100%;
   padding-right: 3px;
   padding-left: 3px;
-  background: var(--link-color-active-bg);
+  /*background: var(--link-color-active-bg);*/
   border-radius: 10px;
 }
 .col {
@@ -8733,14 +8732,14 @@ body {
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
-  background: #f8f9fd;
+  /* background: #f8f9fd; */
   color: gray;
 }
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #455AF7;
+  color: #357236;
 }
 a:hover, a:focus {
   text-decoration: none !important;
@@ -8755,7 +8754,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   color: #000;
 }
 .bg-primary {
-  background: #455AF7 !important;
+  background: #357236 !important;
 }
 .ftco-section {
   /*padding: 7em 0;*/
@@ -8783,7 +8782,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   height: 500px;
   position: relative;
   margin: 20px auto;
-  /*background: #455AF7;*/
+  /*background: #357236;*/
   border-radius: 10px;
 }
 /* Events display */
@@ -8804,7 +8803,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   .events-container {
       width: 100%;
       height: auto;
-      /*background: #455AF7;*/
+      /*background: #357236;*/
  }
 }
 .events-container:after {
@@ -8820,6 +8819,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   border-radius: 10px;
  /*margin-left: 12px;
   */
+  background: #357236;
 }
 @media (max-width: 991.98px) {
   .event-card {
@@ -8839,7 +8839,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   font-size: 1rem;
 }
 .event-count {
-  color: #455AF7;
+  color: #357236;
   padding-right: 0;
  /*text-align: right;
   */
@@ -8849,7 +8849,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   text-align: left;
 }
 .event-cancelled {
-  color: #455AF7;
+  color: #357236;
   text-align: right;
 }
 /* Calendar wrapper */
@@ -8865,6 +8865,8 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   float: left;
   /*background: border-box;*/
   border-radius: 10px;
+  border: 1px solid #357236;
+  box-shadow: 0px 8px 60px -10px rgb(13 28 39 / 60%);
 }
 @media (max-width: 991.98px) {
   .calendar-container {
@@ -8919,7 +8921,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
  }
 }
 .left-button:hover, .right-button:hover {
-  color: #455AF7 !important;
+  color: #357236 !important;
 }
 .left-button {
   left: 0;
@@ -8943,7 +8945,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   transition: .2s ease all;
   color: white;
   border: none;
-  background: #455AF7;
+  background: #357236;
 }
 .button.button-white {
   background: #fff;
@@ -9017,7 +9019,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   color: #000;
 }
 .month:hover {
-  color: #455AF7;
+  color: #357236;
 }
 /* Dates table */
 .table-date {
@@ -9037,11 +9039,11 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   position: relative;
 }
 .table-date:not(.nil):hover {
-  border-color: #455AF7;
+  border-color: #357236;
 }
 .event-date {
-  border-color: #455AF7;
-  background: #455AF7;
+  border-color: #357236;
+  background: #357236;
   color: #fff;
 }
 .event-date:after {
@@ -9052,14 +9054,14 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   height: 10px;
   border-radius: 50%;
   content: '';
-  background: #00ff3a;
+  background: red;
 }
 .active-date {
-  background: #455AF7;
+  background: #357236;
   color: #fff;
 }
 .event-date.active-date {
-  background: #455AF7;
+  background: #357236;
 }
 /* input dialog */
 ::-webkit-scrollbar {
@@ -9067,7 +9069,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 .dialog {
   z-index: 5;
-  background: #455AF7;
+  background: #357236;
   position: absolute;
   width: 50%;
   height: 500px;
@@ -9076,6 +9078,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   display: none;
   /*border-radius: 0px 10px 10px 0px;*/
   border-radius: 10px;
+  box-shadow: 0px 8px 60px -10px rgb(13 28 39 / 60%);
 }
 @media (max-width: 767.98px) {
   .dialog {
@@ -9116,7 +9119,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   border-color: #fff;
 }
 .error-input {
-  border-color: #455AF7;
+  border-color: #357236;
 }
 .centralizar{
   background-color: #ffffff;

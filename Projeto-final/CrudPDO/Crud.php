@@ -242,10 +242,10 @@ class Usuario
             $_SESSION['email'] = $email;
             $_SESSION['telefone'] = $telefone;
             $_SESSION['endereco'] = $endereco;
-            header('Location:index.php');
+            header('Location:../perfilConta/perfil.php');
             exit;
         } else {
-            header('Location:index.php');
+            header('Location:../index.php');
             exit;
         }
     }
@@ -305,7 +305,19 @@ class Usuario
         }
     }
 
+    function servicoAgendar(){
+           $servico = $_POST['servico'];
+           $inicio = $_POST['inicio'];
+           $fim = $_POST['fim'];
+           $id = $_SESSION['id'];
+
+           $sql = $this->Conectar()->prepare("INSERT INTO agendamentoservico (tiposervico, inicio, fim, estabelecimento_id) VALUES ($servico, $inicio, $fim, $id)");
+           $sql->execute();
+    }
+
 }
+
+
 #estanciando a classe Usuario:
 $usuario = new Usuario();
 if (isset($_POST["OP"])) {
@@ -328,6 +340,11 @@ if (isset($_POST["OP"])) {
         
         case 'Agendar':
             $usuario->Agendar();
+            break;
+        
+        case 'AGservico':
+            $usuario->servicoAgendar();
+            break;
     }
 }
 /*

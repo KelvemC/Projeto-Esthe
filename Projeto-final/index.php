@@ -5,77 +5,81 @@ use function PHPSTORM_META\type;
 session_start();
 include './exibir_OO.php';
 $dados = new Exibir();
-ob_start()#serve para limpar o buffer e não causar erro.
-?>
+ob_start() #serve para limpar o buffer e não causar erro.
+    ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <title>Meu Projeto Final</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand())); echo $key ?>">
+    <link rel="stylesheet" href="style.css?key=<?php $key = uniqid(md5(rand()));
+    echo $key ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="utf-8" />
     <style type="text/css">
-        img{
+        img {
             border-radius: 20px;
         }
 
-        img.logoNova{
+        img.logoNova {
             height: 60%;
             width: 40%;
             position: absolute;
             left: 35.1mm;
             bottom: 76.40%;
             margin: -9.6%;
-            
+
         }
 
-        div#menu_desktop{
-            margin: 14px;
+        div#menu_desktop {
+            /*margin: 14px;*/
         }
-        h1{
+
+        h1 {
             padding: -20px;
         }
     </style>
 </head>
 
 <body>
-    <section class="main">
-        <div class="center">
-            <div class="menu">
-                <div class="logo-menu">
-                    <a href="/"><img class = "logoNova" src="./images/logos/NovaLogo.svg" /></a>
-                </div>
-                <div id="menu_desktop">
-                    <div class="items-menu d-flex flex-row align-items-center">
-                        <a href="#">Início</a>
-                        <a href="estabelecimentos/searchEstabelecimento.html">Estabelecimentos</a>
-                        
-                        <?php
-                            if(isset($_SESSION['nome'])){
-                                if(isset($_SESSION['logado'])){
-                                    echo $_SESSION['logado'];
-                                    unset($_SESSION['logado']);
-                                }
-                                if(isset($_SESSION['contaP'])){
-                                    echo " 
+    <div class="menu">
+        <div>
+            <a href="/"><img src="./images/Nova.svg" width="100" style="background-color: #618862;"></a>
+        </div>
+        <div id="menu_desktop">
+            <div class="items-menu d-flex flex-row align-items-center">
+                <a href="#">Início</a>
+                
+
+                <?php
+                if (isset($_SESSION['nome'])) {
+                    if (isset($_SESSION['logado'])) {
+                        echo $_SESSION['logado'];
+                        unset($_SESSION['logado']);
+                    }
+                    if (isset($_SESSION['contaP'])) {
+                        echo " 
+                                        <a href='./LadoEstabelecimento/index.php'>Pedidos</a>
                                         <div class='flex-shrink-0 dropdown'>
                                             <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
                                                 <span>" . $_SESSION['nome'] . "</span> <img src='./images/new/profile-pic.png' alt='mdo' width='40' height='40' class='rounded-circle'>
                                             </a>
                                             <ul class='dropdown-menu text-small shadow'>
                                                 <li><a style='color: black' href='./perfilConta/perfil.php'>Perfil</a></li>
-                                                <li><a style='color: black' href='./LadoEstabelecimento/index.php'>Pedidos</a></li>
+        
                                                 <li>
                                                     <hr class='dropdown-divider'>
                                                 </li>
@@ -83,9 +87,9 @@ ob_start()#serve para limpar o buffer e não causar erro.
                                             </ul>
                                         </div>";
 
-                                }
-                                if(isset($_SESSION['contaS'])){
-                                    echo " 
+                    }
+                    if (isset($_SESSION['contaS'])) {
+                        echo " 
                                         <a class='contact-btn' href='login/dashboard.php'>Agendar</a>
                                         <div class='flex-shrink-0 dropdown'>
                                             <a href='#' class='d-block  text-decoration-none dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -100,51 +104,50 @@ ob_start()#serve para limpar o buffer e não causar erro.
                                                 <li><a style='color: black' href='./login/sair.php'>Sair</a></li>
                                             </ul>
                                         </div>";
-                                }
-                            }else{
-                                if(isset($_SESSION['msg'])){
-                                    echo $_SESSION['msg'];
-                                    unset($_SESSION['msg']);
-                                }
-                                echo "<a class='contact-btn' href='./criarConta/contaNormalouProfissional.html'>Cadastro</a>";
-                                echo "<a href='./login/login.php'>Login</a>";
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class =  "items-menu-mobile">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                    <div class = "menu-mobile">
-                        <a href="#">Início</a>
-                        <a href="#">Por que nós?</a>
-                        <a href="#">Depoimento</a>
-                    </div>
-                </div>
+                    }
+                } else {
+                    if (isset($_SESSION['msg'])) {
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
+                    echo "<a class='contact-btn' href='./criarConta/contaNormalouProfissional.html'>Cadastro</a>";
+                    echo "<a href='./login/login.php'>Login</a>";
+                }
+                ?>
             </div>
+        </div>
+        <div class="items-menu-mobile">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <div class="menu-mobile">
+                <a href="#">Início</a>
+                <a href="#">Por que nós?</a>
+                <a href="#">Depoimento</a>
+            </div>
+        </div>
+    </div>
+    <section class="main">
+        <div class="center">
+
             <!--menu-->
             <div class="mockup">
                 <h1>Promova experiências aos seus clientes</h1>
                 <br />
                 <p>E veja resultados expressivos dia após dia</p>
-                <br />
                 <div class="mockup">
 
-                <div id="agendar" class="mockup-foto">
-                    <img src="">
+                    <?php
+                    if (isset($_SESSION['contaS'])) {
+                        echo "<a href='/'><img class = 'mockupNovo' src='./images/macbook mockupNew.svg' /></a>";
+                    } else if (isset($_SESSION['contaP'])) {
+                        echo "<a href='/'><img class = 'mockupNovo' src='./images/macbook mockupNew.svg' /></a>";
+                    } else if (!(isset($_SESSION['contaS'])) || !(isset($_SESSION['contaP']))) {
+                        echo "<img src='./images/macbook mockupNew.svg'>";
+
+                    }
+                    ?>
+
+
                 </div>
-                <?php
-                if(isset($_SESSION['contaS'])){ 
-                    echo "<a href='/'><img class = 'mockupNovo' src='./images/macbook mockup.svg' /></a>";
-                }else if(isset($_SESSION['contaP'])){
-                    echo "<img src = './images/agendamento.png' style = 'bottom: 50;'></img>";
-                }else if(!(isset($_SESSION['contaS'])) || !(isset($_SESSION['contaP']))){
-                    echo "<img src = './images/agendamento.png'></img>";
-                    
-                }
-                ?>
-                
-                
-            </div>
 
             </div>
             <!--mockup-->
@@ -156,7 +159,7 @@ ob_start()#serve para limpar o buffer e não causar erro.
     <section class="marcas">
         <div class="center">
             <img src="images/logos/LOGO1/LOGO1.png" />
-            <img src="images/logos/Natura.jpg"/>
+            <img src="images/logos/Natura.jpg" />
             <img src="images/logos/LOGO3/LOGO3.png" />
             <img src="images/logos/LOGO4/LOGO4.png" />
             <img src="images/logos/LOGO5/LOGO5.png" />
@@ -200,12 +203,12 @@ ob_start()#serve para limpar o buffer e não causar erro.
         <h2>Vamos começar o seu agendamento?</h2>
         <h4>Entre em contato para tirar suas dúvidas</h4>
         <?php
-        if(isset($_SESSION['nome'])){
+        if (isset($_SESSION['nome'])) {
             echo "<a href='login/dashboard.php'>Agendar</a>";
-        }else{
+        } else {
             echo "<a href='login/login.php'>Agendar</a>";
         }
-        
+
         ?>
 
 
@@ -217,10 +220,13 @@ ob_start()#serve para limpar o buffer e não causar erro.
             <div style="max-width: 1280px;" class="lista-beneficios">
                 <h1>Benefícios para você</h1>
                 <br />
-                <p><img src="images/checklist.svg" /><span>Garantia de resultados, você terá um grande crescimento no seu negócio e melhor organização.</span></p>
-                <p><img src="images/checklist.svg" /><span>Agendamentos fácil de realizar, você não terá muita dificuldade em organizar horários.</span></p>
-                <p><img src="images/checklist.svg" /><span>Suporte, nossa equipe oferece profissionais que dão suporte para tirar qualquer dúvida.</span></p>
-                
+                <p><img src="images/checklist.svg" /><span>Garantia de resultados, você terá um grande crescimento no
+                        seu negócio e melhor organização.</span></p>
+                <p><img src="images/checklist.svg" /><span>Agendamentos fácil de realizar, você não terá muita
+                        dificuldade em organizar horários.</span></p>
+                <p><img src="images/checklist.svg" /><span>Suporte, nossa equipe oferece profissionais que dão suporte
+                        para tirar qualquer dúvida.</span></p>
+
             </div>
 
             <div class="img-beneficios">
@@ -232,90 +238,90 @@ ob_start()#serve para limpar o buffer e não causar erro.
 
     <section class="depoimentos">
         <h1>Depoimentos</h1>
-        <div style="display: block;" class = "center">
+        <div style="display: block;" class="center">
             <br>
             <div class="container-slider">
                 <div class="container-slider-single">
                     <h3>Miriam Souza</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
 
                 <div class="container-slider-single">
                     <h3>Beatriz Silva</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
 
                 <div class="container-slider-single">
                     <h3>Vitor rodrigues</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
 
                 <div class="container-slider-single">
                     <h3>Raquel</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
 
                 <div class="container-slider-single">
                     <h3>Águida</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
 
                 <div class="container-slider-single">
                     <h3>Ana vitória</h3>
-                    <img src ="images/DEPOIMENTO1/DEPOIMENTO1.png"/>
+                    <img src="images/DEPOIMENTO1/DEPOIMENTO1.png" />
                     <p>O trabalho da Agência esthe foi fundamental para o nosso posicionamento e nossas estratégias de
                         2022. Juntos tivemos excelentes resultados e nossos clientes ficaram surpresos com a qualidade.
                         .</p>
-                    <img src = "images/RATE/RATE.png"/>                        
+                    <img src="images/RATE/RATE.png" />
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class = "contato">
+    <section class="contato">
         <h1>Entre em contato</h1>
-        <div style = "max-width: 900px;"class = "center">
-            
+        <div style="max-width: 900px;" class="center">
+
             <form method="post">
-                <input type = "text" placeholder="Seu nome..."/>
-                <input type="email" placeholder="Seu e-mail..."/>
+                <input type="text" placeholder="Seu nome..." />
+                <input type="email" placeholder="Seu e-mail..." />
                 <textarea placeholder="Sua Mensagem..."></textarea>
-                <input type = "submit" placeholder="Enviar"/>
+                <input type="submit" placeholder="Enviar" />
             </form>
         </div>
     </section>
 
     <footer>
-        <div style="max-width: 1280px;" class = "center">
-            <div class = "text-footer">
+        <div style="max-width: 1280px;" class="center">
+            <div class="text-footer">
                 <p>Todos os direitos reservados ao Grupo Great Makers</p>
             </div>
             <div class="items-menu">
                 <a href="#">Início</a>
                 <a href="#">Por que nós?</a>
                 <a href="#">Depoimento</a>
-                <a class="contact-btn" href="">Entre em contato</a>
+                
             </div>
         </div>
     </footer>
@@ -333,13 +339,13 @@ ob_start()#serve para limpar o buffer e não causar erro.
             autoplaySpeed: 3000,
             pauseOnHover: false,
             responsive: [
-                            {
-                              breakpoint: 768,
-                              settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                              }
-                            }],
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }],
         })
     </script>
     <script>
@@ -349,16 +355,16 @@ ob_start()#serve para limpar o buffer e não causar erro.
         })
         */
         var menuBtn = document.querySelector('.items-menu-mobile i');
-        menuBtn.addEventListener('click',()=>{
-            let itemsMenu= document.querySelector('.menu-mobile');
-            if(itemsMenu.classList.contains('show')){
+        menuBtn.addEventListener('click', () => {
+            let itemsMenu = document.querySelector('.menu-mobile');
+            if (itemsMenu.classList.contains('show')) {
                 itemsMenu.classList.remove('show');
                 itemsMenu.classList.add('hide');
-            }else{
+            } else {
                 itemsMenu.classList.remove('hide');
                 itemsMenu.classList.add('show');
             }
-            
+
 
         });
     </script>
